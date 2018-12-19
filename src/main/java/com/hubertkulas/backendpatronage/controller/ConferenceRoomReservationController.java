@@ -30,7 +30,7 @@ public class ConferenceRoomReservationController {
     }
 
     @RequestMapping(method = RequestMethod.PUT, value = "/conferenceRoom/{id}")
-    public void update(@PathVariable Long id,@RequestBody ConferenceRoomReservation conferenceRoomReservation){
+    public void update(@RequestBody ConferenceRoomReservation conferenceRoomReservation, @PathVariable Long id){
         conferenceRoomReservationService.update(id,conferenceRoomReservation);
     }
 
