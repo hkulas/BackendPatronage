@@ -26,7 +26,8 @@ public class DataBaseLoader implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         logger.info("Populated db");
-        //conferenceRoomReservationRepository.save(new ConferenceRoomReservation("This is id",dateFormat.parse("1996-12-14"),dateFormat.parse("1997-01-12"),new ConferenceRoom("John","This is room id",3,true,20,30,10)));
+     // TO   conferenceRoomReservationRepository.save(new ConferenceRoomReservation("12341",dateFormat.parse("1996-12-14"),dateFormat.parse("1997-01-12"),
+    //                                            new ConferenceRoom("John","521512",3,true,20,30,10)));
 
     }
 }

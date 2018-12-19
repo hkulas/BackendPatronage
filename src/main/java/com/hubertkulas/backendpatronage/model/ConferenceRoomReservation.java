@@ -41,6 +41,14 @@ public class ConferenceRoomReservation {
 //        this.organization = organization;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String getPersonalId() {
         return personalId;
     }
