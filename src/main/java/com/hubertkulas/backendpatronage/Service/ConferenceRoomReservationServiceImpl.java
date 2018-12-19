@@ -1,6 +1,6 @@
-package com.hubertkulas.backendpatronage.Service;
+package com.hubertkulas.backendpatronage.service;
 
-import com.hubertkulas.backendpatronage.Repository.ConferenceRoomReservationRepository;
+import com.hubertkulas.backendpatronage.repository.ConferenceRoomReservationRepository;
 import com.hubertkulas.backendpatronage.model.ConferenceRoomReservation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

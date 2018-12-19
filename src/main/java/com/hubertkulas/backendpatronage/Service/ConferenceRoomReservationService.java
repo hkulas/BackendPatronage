@@ -1,4 +1,4 @@
-package com.hubertkulas.backendpatronage.Service;
+package com.hubertkulas.backendpatronage.service;
 
 import com.hubertkulas.backendpatronage.model.ConferenceRoomReservation;
 

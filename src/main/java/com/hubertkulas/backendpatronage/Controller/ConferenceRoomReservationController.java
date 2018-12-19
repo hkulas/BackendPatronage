@@ -1,6 +1,6 @@
-package com.hubertkulas.backendpatronage.Controller;
+package com.hubertkulas.backendpatronage.controller;
 
-import com.hubertkulas.backendpatronage.Service.ConferenceRoomReservationService;
+import com.hubertkulas.backendpatronage.service.ConferenceRoomReservationService;
 import com.hubertkulas.backendpatronage.model.ConferenceRoomReservation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
