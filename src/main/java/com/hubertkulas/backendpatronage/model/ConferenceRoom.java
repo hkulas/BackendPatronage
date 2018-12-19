@@ -87,4 +87,12 @@ public class ConferenceRoom {
     public void setHangingPlaces(int hangingPlaces) {
         this.hangingPlaces = hangingPlaces;
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 }

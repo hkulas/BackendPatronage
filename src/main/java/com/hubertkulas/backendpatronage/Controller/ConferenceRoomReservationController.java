@@ -1,12 +1,9 @@
 package com.hubertkulas.backendpatronage.controller;
 
-import com.hubertkulas.backendpatronage.service.ConferenceRoomReservationService;
 import com.hubertkulas.backendpatronage.model.ConferenceRoomReservation;
+import com.hubertkulas.backendpatronage.service.ConferenceRoomReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -28,12 +25,12 @@ public class ConferenceRoomReservationController {
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/conferenceRoom")
-    public void add(ConferenceRoomReservation conferenceRoomReservation){
+    public void add(@RequestBody ConferenceRoomReservation conferenceRoomReservation){
         conferenceRoomReservationService.add(conferenceRoomReservation);
     }
 
     @RequestMapping(method = RequestMethod.PUT, value = "/conferenceRoom/{id}")
-    public void update(@PathVariable Long id, ConferenceRoomReservation conferenceRoomReservation){
+    public void update(@PathVariable Long id,@RequestBody ConferenceRoomReservation conferenceRoomReservation){
         conferenceRoomReservationService.update(id,conferenceRoomReservation);
     }
 
