@@ -1,6 +1,7 @@
 package com.hubertkulas.backendpatronage.model;
 
 public class Organization {
+
     private String name;
 
     public Organization() {

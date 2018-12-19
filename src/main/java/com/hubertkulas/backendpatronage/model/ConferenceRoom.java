@@ -1,6 +1,15 @@
 package com.hubertkulas.backendpatronage.model;
 
+import javax.persistence.*;
+
+@Entity
+//@Table(name="conferenceRoom") działa bez tego #1
 public class ConferenceRoom {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
     private String name;
     private String idOfRoom;
     private int floor;

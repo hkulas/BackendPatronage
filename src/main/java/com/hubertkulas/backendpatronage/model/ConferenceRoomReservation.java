@@ -3,11 +3,9 @@ package com.hubertkulas.backendpatronage.model;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import java.sql.Date;
+import javax.persistence.*;
+import java.util.Date;
+
 
 @Entity
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
@@ -25,20 +23,22 @@ public class ConferenceRoomReservation {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date endOfReservation;
 
+    @ManyToOne
+    //@JoinColumn(name = "conferenceRoom") działa bez tego #1
     private ConferenceRoom conferenceRoom;
-    private ConferenceRoomEquipment conferenceRoomEquipment;
-    private Organization organization;
+//    private ConferenceRoomEquipment conferenceRoomEquipment;
+//    private Organization organization;
 
     public ConferenceRoomReservation() {
     }
 
-    public ConferenceRoomReservation(String personalId, Date startOfReservation, Date endOfReservation, ConferenceRoom conferenceRoom, ConferenceRoomEquipment conferenceRoomEquipment, Organization organization) {
+    public ConferenceRoomReservation(String personalId, Date startOfReservation, Date endOfReservation, ConferenceRoom conferenceRoom/*, ConferenceRoomEquipment conferenceRoomEquipment, Organization organization*/) {
         this.personalId = personalId;
         this.startOfReservation = startOfReservation;
         this.endOfReservation = endOfReservation;
         this.conferenceRoom = conferenceRoom;
-        this.conferenceRoomEquipment = conferenceRoomEquipment;
-        this.organization = organization;
+//        this.conferenceRoomEquipment = conferenceRoomEquipment;
+//        this.organization = organization;
     }
 
     public String getPersonalId() {
@@ -65,6 +65,7 @@ public class ConferenceRoomReservation {
         this.endOfReservation = endOfReservation;
     }
 
+    //
     public ConferenceRoom getConferenceRoom() {
         return conferenceRoom;
     }
@@ -73,19 +74,19 @@ public class ConferenceRoomReservation {
         this.conferenceRoom = conferenceRoom;
     }
 
-    public ConferenceRoomEquipment getConferenceRoomEquipment() {
-        return conferenceRoomEquipment;
-    }
-
-    public void setConferenceRoomEquipment(ConferenceRoomEquipment conferenceRoomEquipment) {
-        this.conferenceRoomEquipment = conferenceRoomEquipment;
-    }
-
-    public Organization getOrganization() {
-        return organization;
-    }
-
-    public void setOrganization(Organization organization) {
-        this.organization = organization;
-    }
+//    public ConferenceRoomEquipment getConferenceRoomEquipment() {
+//        return conferenceRoomEquipment;
+//    }
+//
+//    public void setConferenceRoomEquipment(ConferenceRoomEquipment conferenceRoomEquipment) {
+//        this.conferenceRoomEquipment = conferenceRoomEquipment;
+//    }
+//
+//    public Organization getOrganization() {
+//        return organization;
+//    }
+//
+//    public void setOrganization(Organization organization) {
+//        this.organization = organization;
+//    }
 }

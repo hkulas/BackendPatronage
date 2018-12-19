@@ -1,6 +1,7 @@
 package com.hubertkulas.backendpatronage.model;
 
 public class ConferenceRoomEquipment {
+
     private String projectorName;
     private boolean isTherePhone;
     private int internalNumber;
