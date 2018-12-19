@@ -17,13 +17,13 @@ public class ConferenceRoomReservation {
 
     private String personalId;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
     private Date startOfReservation;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
     private Date endOfReservation;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     //@JoinColumn(name = "conferenceRoom") działa bez tego #1
     private ConferenceRoom conferenceRoom;
 //    private ConferenceRoomEquipment conferenceRoomEquipment;
@@ -48,6 +48,8 @@ public class ConferenceRoomReservation {
     public void setId(Long id) {
         this.id = id;
     }
+
+
 
     public String getPersonalId() {
         return personalId;

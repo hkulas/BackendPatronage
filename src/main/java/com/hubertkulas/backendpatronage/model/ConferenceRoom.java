@@ -7,13 +7,13 @@ import javax.persistence.*;
 public class ConferenceRoom {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String name;
     private String idOfRoom;
     private int floor;
-    private boolean isItAvailable;
+    private boolean isAvailable;
     private int standingPlaces;
     private int seats;
     private int hangingPlaces;
@@ -21,11 +21,11 @@ public class ConferenceRoom {
     public ConferenceRoom() {
     }
 
-    public ConferenceRoom(String name, String idOfRoom, int floor, boolean isItAvailable, int standingPlaces, int seats, int hangingPlaces) {
+    public ConferenceRoom(String name, String idOfRoom, int floor, boolean isAvailable, int standingPlaces, int seats, int hangingPlaces) {
         this.name = name;
         this.idOfRoom = idOfRoom;
         this.floor = floor;
-        this.isItAvailable = isItAvailable;
+        this.isAvailable = isAvailable;
         this.standingPlaces = standingPlaces;
         this.seats = seats;
         this.hangingPlaces = hangingPlaces;
@@ -56,12 +56,12 @@ public class ConferenceRoom {
         this.floor = floor;
     }
 
-    public boolean isItAvailable() {
-        return isItAvailable;
+    public boolean isAvailable() {
+        return isAvailable;
     }
 
-    public void setItAvailable(boolean itAvailable) {
-        isItAvailable = itAvailable;
+    public void setisItAvailable(boolean itAvailable) {
+        isAvailable = isAvailable;
     }
 
     public int getStandingPlaces() {
