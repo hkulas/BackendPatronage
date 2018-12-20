@@ -12,6 +12,7 @@ public class Organization {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+
     private String organizationName;
 
     public Organization() {
