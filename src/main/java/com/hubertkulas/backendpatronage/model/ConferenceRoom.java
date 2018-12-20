@@ -3,14 +3,13 @@ package com.hubertkulas.backendpatronage.model;
 import javax.persistence.*;
 
 @Entity
-//@Table(name="conferenceRoom") działa bez tego #1
 public class ConferenceRoom {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name;
+    private String roomName;
     private String idOfRoom;
     private int floor;
     private boolean isAvailable;
@@ -21,8 +20,8 @@ public class ConferenceRoom {
     public ConferenceRoom() {
     }
 
-    public ConferenceRoom(String name, String idOfRoom, int floor, boolean isAvailable, int standingPlaces, int seats, int hangingPlaces) {
-        this.name = name;
+    public ConferenceRoom(String roomName, String idOfRoom, int floor, boolean isAvailable, int standingPlaces, int seats, int hangingPlaces) {
+        this.roomName = roomName;
         this.idOfRoom = idOfRoom;
         this.floor = floor;
         this.isAvailable = isAvailable;
@@ -32,12 +31,12 @@ public class ConferenceRoom {
 
     }
 
-    public String getName() {
-        return name;
+    public String getRoomName() {
+        return roomName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setRoomName(String roomName) {
+        this.roomName = roomName;
     }
 
     public String getIdOfRoom() {
