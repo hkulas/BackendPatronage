@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 
 @Entity
@@ -18,10 +18,10 @@ public class ConferenceRoomReservation {
     private String personalId;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
-    private Date startOfReservation;
+    private LocalDateTime startOfReservation;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
-    private Date endOfReservation;
+    private LocalDateTime endOfReservation;
 
     @ManyToOne(cascade = CascadeType.ALL)
     private ConferenceRoom conferenceRoom;
@@ -35,7 +35,7 @@ public class ConferenceRoomReservation {
     public ConferenceRoomReservation() {
     }
 
-    public ConferenceRoomReservation(String personalId, Date startOfReservation, Date endOfReservation, ConferenceRoom conferenceRoom,
+    public ConferenceRoomReservation(String personalId, LocalDateTime startOfReservation, LocalDateTime endOfReservation, ConferenceRoom conferenceRoom,
                                      ConferenceRoomEquipment conferenceRoomEquipment, Organization organization) {
         this.personalId = personalId;
         this.startOfReservation = startOfReservation;
@@ -63,19 +63,19 @@ public class ConferenceRoomReservation {
         this.personalId = personalId;
     }
 
-    public Date getStartOfReservation() {
+    public LocalDateTime getStartOfReservation() {
         return startOfReservation;
     }
 
-    public void setStartOfReservation(Date startOfReservation) {
+    public void setStartOfReservation(LocalDateTime startOfReservation) {
         this.startOfReservation = startOfReservation;
     }
 
-    public Date getEndOfReservation() {
+    public LocalDateTime getEndOfReservation() {
         return endOfReservation;
     }
 
-    public void setEndOfReservation(Date endOfReservation) {
+    public void setEndOfReservation(LocalDateTime endOfReservation) {
         this.endOfReservation = endOfReservation;
     }
 
