@@ -17,10 +17,14 @@ public class ConferenceRoom {
     private int seats;
     private int hangingPlaces;
 
+    @ManyToOne(cascade = CascadeType.ALL)
+    private ConferenceRoomEquipment conferenceRoomEquipment;
+
+
     public ConferenceRoom() {
     }
 
-    public ConferenceRoom(String roomName, String idOfRoom, int floor, boolean isAvailable, int standingPlaces, int seats, int hangingPlaces) {
+    public ConferenceRoom(String roomName, String idOfRoom, int floor, boolean isAvailable, int standingPlaces, int seats, int hangingPlaces, ConferenceRoomEquipment conferenceRoomEquipment) {
         this.roomName = roomName;
         this.idOfRoom = idOfRoom;
         this.floor = floor;
@@ -28,7 +32,15 @@ public class ConferenceRoom {
         this.standingPlaces = standingPlaces;
         this.seats = seats;
         this.hangingPlaces = hangingPlaces;
+        this.conferenceRoomEquipment = conferenceRoomEquipment;
+    }
 
+    public ConferenceRoomEquipment getConferenceRoomEquipment() {
+        return conferenceRoomEquipment;
+    }
+
+    public void setConferenceRoomEquipment(ConferenceRoomEquipment conferenceRoomEquipment) {
+        this.conferenceRoomEquipment = conferenceRoomEquipment;
     }
 
     public String getRoomName() {
@@ -60,6 +72,10 @@ public class ConferenceRoom {
     }
 
     public void setisItAvailable(boolean itAvailable) {
+        isAvailable = isAvailable;
+    }
+
+    public void setAvailable(boolean isAvailable) {
         isAvailable = isAvailable;
     }
 

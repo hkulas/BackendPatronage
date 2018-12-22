@@ -23,26 +23,14 @@ public class ConferenceRoomReservation {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
     private LocalDateTime endOfReservation;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    private ConferenceRoom conferenceRoom;
-
-    @ManyToOne(cascade = CascadeType.ALL)
-    private ConferenceRoomEquipment conferenceRoomEquipment;
-
-    @ManyToOne(cascade = CascadeType.ALL)
-    private Organization organization;
 
     public ConferenceRoomReservation() {
     }
 
-    public ConferenceRoomReservation(String personalId, LocalDateTime startOfReservation, LocalDateTime endOfReservation, ConferenceRoom conferenceRoom,
-                                     ConferenceRoomEquipment conferenceRoomEquipment, Organization organization) {
+    public ConferenceRoomReservation(String personalId, LocalDateTime startOfReservation, LocalDateTime endOfReservation) {
         this.personalId = personalId;
         this.startOfReservation = startOfReservation;
         this.endOfReservation = endOfReservation;
-        this.conferenceRoom = conferenceRoom;
-        this.conferenceRoomEquipment = conferenceRoomEquipment;
-        this.organization = organization;
     }
 
     public Long getId() {
@@ -52,7 +40,6 @@ public class ConferenceRoomReservation {
     public void setId(Long id) {
         this.id = id;
     }
-
 
 
     public String getPersonalId() {
@@ -80,27 +67,4 @@ public class ConferenceRoomReservation {
     }
 
 
-    public ConferenceRoom getConferenceRoom() {
-        return conferenceRoom;
-    }
-
-    public void setConferenceRoom(ConferenceRoom conferenceRoom) {
-        this.conferenceRoom = conferenceRoom;
-    }
-
-    public ConferenceRoomEquipment getConferenceRoomEquipment() {
-        return conferenceRoomEquipment;
-    }
-
-    public void setConferenceRoomEquipment(ConferenceRoomEquipment conferenceRoomEquipment) {
-        this.conferenceRoomEquipment = conferenceRoomEquipment;
-    }
-
-    public Organization getOrganization() {
-        return organization;
-    }
-
-    public void setOrganization(Organization organization) {
-        this.organization = organization;
-    }
 }
