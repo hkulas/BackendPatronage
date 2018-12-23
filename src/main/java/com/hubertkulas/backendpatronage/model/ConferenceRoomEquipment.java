@@ -1,9 +1,12 @@
 package com.hubertkulas.backendpatronage.model;
 
+import org.hibernate.validator.constraints.Range;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.Pattern;
 
 @Entity
 public class ConferenceRoomEquipment {
@@ -14,15 +17,22 @@ public class ConferenceRoomEquipment {
 
     private String projectorName;
     private boolean isTherePhone;
+
+    @Range(min = 0, max = 100)
     private int internalNumber;
+
+    @Pattern(regexp = "(^\\+)[0-9]{2}\\s[0-9]{9}")
     private String externalNumber;
+
+    private ConnectionType connectionType;
 
     public ConferenceRoomEquipment() {
     }
 
-    public ConferenceRoomEquipment(String projectorName, boolean isTherePhone, int internalNumber, String externalNumber) {
+    public ConferenceRoomEquipment(String projectorName, boolean isTherePhone, int internalNumber, String externalNumber,ConnectionType connectionType) {
         this.projectorName = projectorName;
         this.isTherePhone = isTherePhone;
+        this.connectionType = connectionType;
 
         if (isTherePhone) {
             this.internalNumber = internalNumber;
@@ -30,6 +40,14 @@ public class ConferenceRoomEquipment {
         }
     }
 
+
+    public ConferenceRoomEquipment.ConnectionType getConnectionType() {
+        return connectionType;
+    }
+
+    public void setConnectionType(ConferenceRoomEquipment.ConnectionType connectionType) {
+        this.connectionType = connectionType;
+    }
 
     public Long getId() {
         return id;
@@ -69,5 +87,9 @@ public class ConferenceRoomEquipment {
 
     public void setExternalNumber(String externalNumber) {
         this.externalNumber = externalNumber;
+    }
+
+    public enum ConnectionType{
+        Bluetooth, USB
     }
 }

@@ -1,6 +1,10 @@
 package com.hubertkulas.backendpatronage.model;
 
+import org.hibernate.validator.constraints.Range;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 @Entity
 public class ConferenceRoom {
@@ -9,18 +13,34 @@ public class ConferenceRoom {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(unique = true)
+    @Size(min = 2, max =20)
+    @NotBlank
     private String roomName;
+
+    @Column(unique = true)
+    @Size(min = 2, max =20)
+    @NotBlank
     private String idOfRoom;
+
+    @Range(min = 0, max =10)
     private int floor;
+
+
     private boolean isAvailable;
+
     private int standingPlaces;
     private int seats;
     private int hangingPlaces;
 
+    @ManyToOne(cascade = CascadeType.ALL)
+    private ConferenceRoomEquipment conferenceRoomEquipment;
+
+
     public ConferenceRoom() {
     }
 
-    public ConferenceRoom(String roomName, String idOfRoom, int floor, boolean isAvailable, int standingPlaces, int seats, int hangingPlaces) {
+    public ConferenceRoom(String roomName, String idOfRoom, int floor, boolean isAvailable, int standingPlaces, int seats, int hangingPlaces, ConferenceRoomEquipment conferenceRoomEquipment) {
         this.roomName = roomName;
         this.idOfRoom = idOfRoom;
         this.floor = floor;
@@ -28,8 +48,10 @@ public class ConferenceRoom {
         this.standingPlaces = standingPlaces;
         this.seats = seats;
         this.hangingPlaces = hangingPlaces;
-
+        this.conferenceRoomEquipment = conferenceRoomEquipment;
     }
+
+
 
     public String getRoomName() {
         return roomName;
@@ -63,6 +85,10 @@ public class ConferenceRoom {
         isAvailable = isAvailable;
     }
 
+    public void setAvailable(boolean isAvailable) {
+        isAvailable = isAvailable;
+    }
+
     public int getStandingPlaces() {
         return standingPlaces;
     }
@@ -93,5 +119,13 @@ public class ConferenceRoom {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public ConferenceRoomEquipment getConferenceRoomEquipment() {
+        return conferenceRoomEquipment;
+    }
+
+    public void setConferenceRoomEquipment(ConferenceRoomEquipment conferenceRoomEquipment) {
+        this.conferenceRoomEquipment = conferenceRoomEquipment;
     }
 }
