@@ -90,6 +90,7 @@ public class ConferenceRoomEquipment {
     }
 
     public enum ConnectionType{
-        Bluetooth, USB
+        Bluetooth,
+        USB
     }
 }
