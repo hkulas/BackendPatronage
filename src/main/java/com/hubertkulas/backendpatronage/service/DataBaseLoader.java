@@ -58,16 +58,16 @@ public class DataBaseLoader implements CommandLineRunner {
         organizationRepository.save(new Organization("Frontend"));
         organizationRepository.save(new Organization("QA"));
 
-        conferenceRoomReservationRepository.save(new ConferenceRoomReservation("1", localDateTime.parse("1996-12-14 20:50", formatter),
+        conferenceRoomReservationRepository.save(new ConferenceRoomReservation("23", localDateTime.parse("1996-12-14 20:50", formatter),
                 localDateTime.parse("1996-12-14 21:50", formatter)));
 
-        conferenceRoomReservationRepository.save(new ConferenceRoomReservation("2", localDateTime.parse("2018-07-14 14:00", formatter),
+        conferenceRoomReservationRepository.save(new ConferenceRoomReservation("1345", localDateTime.parse("2018-07-14 14:00", formatter),
                 localDateTime.parse("2018-07-14 15:00", formatter)));
 
-        conferenceRoomReservationRepository.save(new ConferenceRoomReservation("3", localDateTime.parse("2018-09-14 10:00", formatter),
+        conferenceRoomReservationRepository.save(new ConferenceRoomReservation("9875", localDateTime.parse("2018-09-14 10:00", formatter),
                 localDateTime.parse("2018-09-14 18:00", formatter)));
 
-        conferenceRoomReservationRepository.save(new ConferenceRoomReservation("4", localDateTime.parse("2018-07-15 16:00", formatter),
+        conferenceRoomReservationRepository.save(new ConferenceRoomReservation("20258", localDateTime.parse("2018-07-15 16:00", formatter),
                 localDateTime.parse("2018-07-15 16:30", formatter)));
 
 
