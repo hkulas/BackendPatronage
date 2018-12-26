@@ -1,10 +1,13 @@
 package com.hubertkulas.backendpatronage.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Organization {
 
     @Id
@@ -13,7 +16,7 @@ public class Organization {
 
 
     @Column(unique = true)
-    @Size(min = 2, max =20)
+    @Size(min = 2, max = 20)
     @NotBlank
     private String organizationName;
 

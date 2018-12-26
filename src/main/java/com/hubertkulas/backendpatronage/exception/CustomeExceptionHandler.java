@@ -1,6 +1,5 @@
 package com.hubertkulas.backendpatronage.exception;
 
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -14,27 +13,40 @@ import java.time.LocalDateTime;
 public class CustomeExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(Exception.class)
-    public final ResponseEntity<ErrorMessage> defaultErrorMessage(WebRequest webRequest){
+    public final ResponseEntity<ErrorMessage> defaultErrorMessage(Exception ex, WebRequest webRequest){
 
-            ErrorMessage errorMessage = new ErrorMessage(LocalDateTime.now(),"Bad Request","Custome Error Message",webRequest.getDescription(false));
+            ErrorMessage errorMessage = new ErrorMessage(LocalDateTime.now(), HttpStatus.BAD_REQUEST.value(),"Bad Request",ex.getMessage(),webRequest.getDescription(false));
 
-            return new ResponseEntity<>(errorMessage, new HttpHeaders(), HttpStatus.BAD_REQUEST);
+            return ResponseEntity
+                    .badRequest()
+                    .body(errorMessage);
+            //return new ResponseEntity<>(errorMessage, HttpStatus.BAD_REQUEST);
     }
 
     class ErrorMessage{
-        private LocalDateTime timeStamp;
 
+        private LocalDateTime timeStamp;
+        private int status;
         private String error;
         private String message;
         private String details;
-        private String path;
 
 
-        public ErrorMessage(LocalDateTime timeStamp, String error, String message, String details) {
+
+        public ErrorMessage(LocalDateTime timeStamp, int status, String error, String message, String details) {
             this.timeStamp = timeStamp;
             this.error = error;
             this.message = message;
             this.details = details;
+            this.status = status;
+        }
+
+        public int getStatus() {
+            return status;
+        }
+
+        public void setStatus(int status) {
+            this.status = status;
         }
 
         public LocalDateTime getTimeStamp() {
