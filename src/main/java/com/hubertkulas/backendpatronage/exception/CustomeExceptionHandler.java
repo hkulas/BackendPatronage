@@ -15,7 +15,7 @@ public class CustomeExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(Exception.class)
     public final ResponseEntity<ErrorMessage> defaultErrorMessage(Exception ex, WebRequest webRequest){
 
-            ErrorMessage errorMessage = new ErrorMessage(LocalDateTime.now(), HttpStatus.BAD_REQUEST.value(),"Bad Request",ex.getMessage(),webRequest.getDescription(false));
+            ErrorMessage errorMessage = new ErrorMessage(LocalDateTime.now(), HttpStatus.BAD_REQUEST.value(),HttpStatus.BAD_REQUEST.name(),ex.getMessage(),webRequest.getDescription(false));
 
             return ResponseEntity
                     .badRequest()
