@@ -41,13 +41,7 @@ public class ConferenceRoomEquipment {
     }
 
 
-    public ConferenceRoomEquipment.ConnectionType getConnectionType() {
-        return connectionType;
-    }
 
-    public void setConnectionType(ConferenceRoomEquipment.ConnectionType connectionType) {
-        this.connectionType = connectionType;
-    }
 
     public Long getId() {
         return id;
@@ -87,6 +81,14 @@ public class ConferenceRoomEquipment {
 
     public void setExternalNumber(String externalNumber) {
         this.externalNumber = externalNumber;
+    }
+
+    public ConferenceRoomEquipment.ConnectionType getConnectionType() {
+        return connectionType;
+    }
+
+    public void setConnectionType(ConferenceRoomEquipment.ConnectionType connectionType) {
+        this.connectionType = connectionType;
     }
 
     public enum ConnectionType{
