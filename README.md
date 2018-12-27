@@ -1,6 +1,7 @@
 # Patronage 2018/2019 Back-end (JAVA)
 
 This is REST API with CRUD operations.
+Reservation system for conference rooms.
 
 ## How to build and run
 You need to build your app.
