@@ -50,13 +50,13 @@ There are three specified adresses:
   http://localhost:8080/ConferenceRoomReservations/2
   ```
 
-LEGEND:
-{id} - You should specify which id you want here for example:
-  http://localhost:8080/Organizations/*3*
+*LEGEND:*<br/>
+{id} - You should specify which id you want here for example:<br/>
+  http://localhost:8080/Organizations/*3*<br/>
   In the link above 3 is {id}.
 
-{adress} - You should choose one of the specified adresses (ConferenceRooms,
-           ConferenceRoomReservations, Organizations).
+{adress} - You should choose one of the specified adresses<br/> 
+(ConferenceRooms, ConferenceRoomReservations, Organizations).
 
 ## Sending requests with cURL
 There are 4 embedded organizations, conference rooms and conference room reservations.
