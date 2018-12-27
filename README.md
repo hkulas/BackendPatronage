@@ -32,7 +32,7 @@ There are three specified adresses:
   ```
 
 * POST
-  Everything is the sam as in GET request.
+  Everything is the same as in GET request.
 
 * PUT
   ```
