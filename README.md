@@ -75,11 +75,11 @@ curl http://localhost:8080/Organizations
 response:
 ```
 [
- {"id":1,"organizationName":"IBM"},
- {"id":2,"organizationName":"Google"},
- {"id":3,"organizationName":"Red Hat"},
- {"id":4,"organizationName":"Oracle"}
- ]
+  {"id":1,"organizationName":"IBM"},
+  {"id":2,"organizationName":"Google"},
+  {"id":3,"organizationName":"Red Hat"},
+  {"id":4,"organizationName":"Oracle"}
+]
  ```
 ###  3.1.1 GET with specified id
 
@@ -114,11 +114,11 @@ http://localhost:8080/Organizations
 response:
 ```
 [
-{"id":1,"organizationName":"IBM"},
-{"id":2,"organizationName":"Google"},
-{"id":3,"organizationName":"Red Hat"},
-{"id":4,"organizationName":"Oracle"},
-{"id":5,"organizationName":"Apple"}
+  {"id":1,"organizationName":"IBM"},
+  {"id":2,"organizationName":"Google"},
+  {"id":3,"organizationName":"Red Hat"},
+  {"id":4,"organizationName":"Oracle"},
+  {"id":5,"organizationName":"Apple"}
 ]
 ```
 ### 3.3. PUT
@@ -137,10 +137,10 @@ curl -d "{\"id\":2,\"organizationName\":\"Intive\"}" -H "Content-Type: applicati
 response:
 ```
 [
-{"id":1,"organizationName":"IBM"},
-{"id":2,"organizationName":"Intive"},
-{"id":3,"organizationName":"Red Hat"},
-{"id":4,"organizationName":"Oracle"},
+  {"id":1,"organizationName":"IBM"},
+  {"id":2,"organizationName":"Intive"},
+  {"id":3,"organizationName":"Red Hat"},
+  {"id":4,"organizationName":"Oracle"},
 ]
 ```
 
@@ -159,9 +159,9 @@ curl -X DELETE http://localhost:8080/Organizations/3
 response:
 ```
 [
-{"id":1,"organizationName":"IBM"},
-{"id":2,"organizationName":"Intive"},
-{"id":4,"organizationName":"Oracle"},
+  {"id":1,"organizationName":"IBM"},
+  {"id":2,"organizationName":"Intive"},
+  {"id":4,"organizationName":"Oracle"},
 ]
 ```
 
