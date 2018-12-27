@@ -16,15 +16,15 @@ Then you need to run it.
 gradlew bootRun
 ```
 
-## You can send requests at given adresses
-There are three specified adresses:
+## You can send requests at given addresses
+There are three specified addresses:
 - ConferenceRooms
 - ConferenceRoomReservations
 - Organizations
 
 * GET
   ```
-  http://localhost:8080/{adress}
+  http://localhost:8080/{address}
   ```
   example:
   ```
@@ -36,7 +36,7 @@ There are three specified adresses:
 
 * PUT
   ```
-  http://localhost:8080/{adress}/{id}
+  http://localhost:8080/{address}/{id}
   ```
   example:
   ```
@@ -44,7 +44,7 @@ There are three specified adresses:
   ```
 * DELETE
   ```
-  http://localhost:8080/{adress}/{id}
+  http://localhost:8080/{address}/{id}
   ```
   example:
   ```
@@ -56,7 +56,7 @@ There are three specified adresses:
   http://localhost:8080/Organizations/3<br/>
   In the link above 3 is {id}.
 
-{adress} - You should choose one of the specified adresses<br/> 
+{address} - You should choose one of the specified addresses<br/> 
 (ConferenceRooms, ConferenceRoomReservations, Organizations).
 
 ## Sending requests with cURL
@@ -66,7 +66,7 @@ If u want to get response after making changes with POST, PUT, DELETE use GET re
 ### 3.1. GET
 
 ```
-curl {your adress}
+curl {your address}
 ```
 example:
 ```
@@ -84,7 +84,7 @@ response:
 ###  3.1.1 GET with specified id
 
 ```
-curl {your adress}
+curl {your address}
 ```
 example:
 ```
@@ -102,7 +102,7 @@ If you are using windows command prompt you have to use double quotes instead of
 single ones, and escape them everytime you will use them with "\".
 
 ```
-curl -d "{json}" -H "Content-Type: {type of your format}" {your adress}
+curl -d "{json}" -H "Content-Type: {type of your format}" {your address}
 ```
 example:
 ```
@@ -124,7 +124,7 @@ response:
 ### 3.3. PUT
 
 ```
-curl -d "{json}" -H "Content-Type: application/json" -X PUT {your adress}
+curl -d "{json}" -H "Content-Type: application/json" -X PUT {your address}
 ```
 example:
 ```
@@ -147,7 +147,7 @@ response:
 ### 3.4. DELETE
 
 ```
-curl -X DELETE {your adress}
+curl -X DELETE {your address}
 ```
 example:
 ```
