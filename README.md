@@ -23,9 +23,9 @@ There are three specified adresses:
 
 * GET
 
-- http://localhost:8080/{adress}
-  example:
-- http://localhost:8080/Organizations
+  *http://localhost:8080/{adress}*
+  *example:*
+  *http://localhost:8080/Organizations*
 
 * POST
   Everything is the sam as in GET request.
