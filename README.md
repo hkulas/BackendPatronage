@@ -16,44 +16,40 @@ gradlew bootRun
 ```
 
 ## You can send requests at given adresses
+There are three specified adresses:
+- ConferenceRooms
+- ConferenceRoomReservations
+- Organizations
 
 * GET
-  ConferenceRoom
-- http://localhost:8080/ConferenceRooms
 
-  ConferenceRoomReservations
-- http://localhost:8080/ConferenceRoomReservations
-
-  Organization
+- http://localhost:8080/{adress}
+  example:
 - http://localhost:8080/Organizations
 
 * POST
-  It is the same adresses as in GET request.
+  Everything is the sam as in GET request.
 
 * PUT
-  ConferenceRoom
-- http://localhost:8080/ConferenceRooms/{id}
 
-  ConferenceRoomReservations
-- http://localhost:8080/ConferenceRoomReservations/{id}
-
-  Organization
-- http://localhost:8080/Organizations/{id}
+- http://localhost:8080/{adress}/{id}
+  example:
+- http://localhost:8080/ConferenceRooms/2
 
 * DELETE
-  ConferenceRoom
-- http://localhost:8080/ConferenceRooms/{id}
 
-  ConferenceRoomReservations
-- http://localhost:8080/ConferenceRoomReservations/{id}
+- http://localhost:8080/{adress}/{id}
+  example:
+- http://localhost:8080/ConferenceRoomReservations/2
 
-  Organization
-- http://localhost:8080/Organizations/{id}
 
 LEGEND:
 {id} - You should specify which id you want here for example:
   http://localhost:8080/Organizations/*3*
   In the link above 3 is {id}.
+
+{adress} - You should choose one of the specified adresses (ConferenceRooms,
+           ConferenceRoomReservations, Organizations).
 
 ## Sending requests with cURL
 There are 4 embedded organizations, conference rooms and conference room reservations.
@@ -153,7 +149,6 @@ curl -X DELETE http://localhost:8080/Organizations/3
 *GET request*
 
 response:
-response:
 ```
 [
 {"id":1,"organizationName":"IBM"},
@@ -162,8 +157,8 @@ response:
 ]
 ```
 
-## Built Wit
+## Built With
 * [Gradle](https://gradle.org/) - Dependency Management
 ## Authors
 
-* **Hubert Kulas** - *Initial work* - [hkulas](https://github.com/hkulas)
+* **Hubert Kulas** - *Whole project* - [hkulas](https://github.com/hkulas)
