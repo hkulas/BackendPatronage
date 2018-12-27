@@ -42,7 +42,7 @@ public class DataBaseLoader implements CommandLineRunner {
                     new ConferenceRoom("BlueRoom", "10", 1, true, 20, 30, 0,
                     new ConferenceRoomEquipment("Alfa", true, 56, "+12 687123123",ConferenceRoomEquipment.ConnectionType.Bluetooth)));
         conferenceRoomRepository.save(
-                    new ConferenceRoom("BlueWall", "20", 2, true, 20, 10, 0,
+                    new ConferenceRoom("RedWall", "20", 2, true, 20, 10, 0,
                     new ConferenceRoomEquipment("Beta", true, 31, "+14 123456789",ConferenceRoomEquipment.ConnectionType.Bluetooth)));
         conferenceRoomRepository.save(
                     new ConferenceRoom("OrangeRoom", "22", 2, true, 15, 5, 0,
@@ -51,10 +51,10 @@ public class DataBaseLoader implements CommandLineRunner {
                     new ConferenceRoom("WideRoom", "40", 4, false, 15, 8, 6,
                     new ConferenceRoomEquipment("Delta", false, 99, "+12 999999999",ConferenceRoomEquipment.ConnectionType.Bluetooth)));
 
-        organizationRepository.save(new Organization("Backend Java"));
-        organizationRepository.save(new Organization("Backend .Net"));
-        organizationRepository.save(new Organization("Frontend"));
-        organizationRepository.save(new Organization("QA"));
+        organizationRepository.save(new Organization("IBM"));
+        organizationRepository.save(new Organization("Google"));
+        organizationRepository.save(new Organization("Red Hat"));
+        organizationRepository.save(new Organization("Oracle"));
 
         conferenceRoomReservationRepository.save(new ConferenceRoomReservation("23", LocalDateTime.parse("1996-12-14 20:50", formatter),
                 LocalDateTime.parse("1996-12-14 21:50", formatter)));
