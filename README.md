@@ -53,7 +53,7 @@ There are three specified adresses:
 
 *LEGEND:*<br/>
 {id} - You should specify which id you want here for example:<br/>
-  http://localhost:8080/Organizations/*3*<br/>
+  http://localhost:8080/Organizations/3<br/>
   In the link above 3 is {id}.
 
 {adress} - You should choose one of the specified adresses<br/> 
