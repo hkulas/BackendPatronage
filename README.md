@@ -22,26 +22,33 @@ There are three specified adresses:
 - Organizations
 
 * GET
-
-  *http://localhost:8080/{adress}*
-  *example:*
-  *http://localhost:8080/Organizations*
+  ```
+  http://localhost:8080/{adress}
+  ```
+  example:
+  ```
+  http://localhost:8080/Organizations
+  ```
 
 * POST
   Everything is the sam as in GET request.
 
 * PUT
-
-- http://localhost:8080/{adress}/{id}
+  ```
+  http://localhost:8080/{adress}/{id}
+  ```
   example:
-- http://localhost:8080/ConferenceRooms/2
-
+  ```
+  http://localhost:8080/ConferenceRooms/2
+  ```
 * DELETE
-
-- http://localhost:8080/{adress}/{id}
+  ```
+  http://localhost:8080/{adress}/{id}
+  ```
   example:
-- http://localhost:8080/ConferenceRoomReservations/2
-
+  ```
+  http://localhost:8080/ConferenceRoomReservations/2
+  ```
 
 LEGEND:
 {id} - You should specify which id you want here for example:
