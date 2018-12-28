@@ -19,7 +19,7 @@ public class ConferenceRoomEquipment {
     private boolean isTherePhone;
 
     @Range(min = 0, max = 100, message = "Minimal value of internal number should be 0 and maximum value should be 100")
-    private int internalNumber;
+    private int internalNumber ;
 
     @Pattern(regexp = "(^\\+)[0-9]{2}\\s[0-9]{9}", message = "You should put your number in correct format like this: +12 123456789")
     private String externalNumber;
