@@ -62,7 +62,7 @@ There are three specified addresses:
 ## Sending requests with cURL
 There are 4 embedded organizations, conference rooms and conference room reservations.
 In this project we use json format to get our data.
-If u want to get response after making changes with POST, PUT, DELETE use GET request.
+If you want to get response after making changes with POST, PUT, DELETE use GET request.
 ### 3.1. GET
 
 ```
