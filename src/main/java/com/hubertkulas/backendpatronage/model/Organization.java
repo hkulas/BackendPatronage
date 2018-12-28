@@ -11,13 +11,13 @@ import javax.validation.constraints.Size;
 public class Organization {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-
+    
     @Column(unique = true)
-    @Size(min = 2, max = 20)
-    @NotBlank
+    @Size(min = 2, max = 20, message = "The size of 'organizatio name' shoulde be between 2 and 20")
+    @NotBlank(message = "'organization name' should not be blank")
     private String organizationName;
 
     public Organization() {

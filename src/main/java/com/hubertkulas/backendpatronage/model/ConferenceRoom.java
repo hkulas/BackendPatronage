@@ -1,5 +1,6 @@
 package com.hubertkulas.backendpatronage.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.validator.constraints.Range;
 
 import javax.persistence.*;
@@ -7,6 +8,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class ConferenceRoom {
 
     @Id
@@ -14,16 +16,16 @@ public class ConferenceRoom {
     private Long id;
 
     @Column(unique = true)
-    @Size(min = 2, max =20)
-    @NotBlank
+    @Size(min = 2, max =20, message = "The size of 'room name' should be between 2 and 20")
+    @NotBlank(message = "'room name' should not be blank")
     private String roomName;
 
     @Column(unique = true)
-    @Size(min = 2, max =20)
-    @NotBlank
+    @Size(min = 2, max =20, message = "The size of 'id of room' should be between 2 and 20")
+    @NotBlank(message = "'id of room' should not be blank")
     private String idOfRoom;
 
-    @Range(min = 0, max =10)
+    @Range(min = 0, max =10, message = "Minimal value of floor should be 0 and maximum value should be 10")
     private int floor;
 
 
