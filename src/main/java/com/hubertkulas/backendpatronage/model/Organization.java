@@ -14,9 +14,9 @@ public class Organization {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    
+
     @Column(unique = true)
-    @Size(min = 2, max = 20, message = "The size of 'organizatio name' shoulde be between 2 and 20")
+    @Size(min = 2, max = 20, message = "The size of 'organization name' should be between 2 and 20")
     @NotBlank(message = "'organization name' should not be blank")
     private String organizationName;
 

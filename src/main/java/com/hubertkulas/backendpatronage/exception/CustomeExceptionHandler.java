@@ -13,24 +13,24 @@ import java.time.LocalDateTime;
 public class CustomeExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(Exception.class)
-    public final ResponseEntity<ErrorMessage> defaultErrorMessage(Exception ex, WebRequest webRequest){
+    public final ResponseEntity<ErrorMessage> defaultErrorMessage(Exception ex, WebRequest webRequest) {
 
-            ErrorMessage errorMessage = new ErrorMessage(LocalDateTime.now(), HttpStatus.BAD_REQUEST.value(),HttpStatus.BAD_REQUEST.name(),ex.getMessage(),webRequest.getDescription(false));
+        ErrorMessage errorMessage = new ErrorMessage(LocalDateTime.now(), HttpStatus.BAD_REQUEST.value(), HttpStatus.BAD_REQUEST.name(), ex.getMessage(),
+                webRequest.getDescription(false));
 
-            return ResponseEntity
-                    .badRequest()
-                    .body(errorMessage);
-            //return new ResponseEntity<>(errorMessage, HttpStatus.BAD_REQUEST);
+
+        return ResponseEntity
+                .badRequest()
+                .body(errorMessage);
     }
 
-    class ErrorMessage{
+    class ErrorMessage {
 
         private LocalDateTime timeStamp;
         private int status;
         private String error;
         private String message;
         private String details;
-
 
 
         public ErrorMessage(LocalDateTime timeStamp, int status, String error, String message, String details) {
