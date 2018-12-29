@@ -14,6 +14,7 @@ import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
 
 @Component
@@ -38,21 +39,23 @@ public class DataBaseLoader implements CommandLineRunner {
     public void run(String... args) throws Exception {
         logger.info("Populated db");
 
-        conferenceRoomRepository.save(
-                    new ConferenceRoom("BlueRoom", "10", 1, true, 20, 30, 0,
-                    new ConferenceRoomEquipment("Alfa", true, 56, "+12 687123123",ConferenceRoomEquipment.ConnectionType.Bluetooth)));
-        conferenceRoomRepository.save(
-                    new ConferenceRoom("RedWall", "20", 2, true, 20, 10, 0,
-                    new ConferenceRoomEquipment("Beta", true, 31, "+14 123456789",ConferenceRoomEquipment.ConnectionType.Bluetooth)));
-        conferenceRoomRepository.save(
-                    new ConferenceRoom("OrangeRoom", "22", 2, true, 15, 5, 0,
-                    new ConferenceRoomEquipment("Gamma", true, 12, "+12 147103103",ConferenceRoomEquipment.ConnectionType.USB)));
-        conferenceRoomRepository.save(
-                    new ConferenceRoom("WideRoom", "40", 4, false, 15, 8, 6,
-                    new ConferenceRoomEquipment("Delta", false, 99, "+12 999999999",ConferenceRoomEquipment.ConnectionType.Bluetooth)));
 
-        organizationRepository.save(new Organization("IBM"));
-        organizationRepository.save(new Organization("Google"));
+        ArrayList<ConferenceRoom> conferenceRoomsIBM = new ArrayList<>();
+        conferenceRoomsIBM.add(new ConferenceRoom("BlueRoom", "10", 1, true, 20, 30, 0,
+                   new ConferenceRoomEquipment("Alfa", true, 56, "+12 123123123",ConferenceRoomEquipment.ConnectionType.Bluetooth)));
+        conferenceRoomsIBM.add(new ConferenceRoom("RedWall", "20", 2, true, 20, 10, 0,
+                    new ConferenceRoomEquipment("Beta", true, 31, "+14 321321321",ConferenceRoomEquipment.ConnectionType.Bluetooth)));
+
+        ArrayList<ConferenceRoom> conferenceRoomsGoogle = new ArrayList<>();
+        conferenceRoomsGoogle.add( new ConferenceRoom("OrangeRoom", "22", 2, true, 15, 5, 0,
+                    new ConferenceRoomEquipment("Gamma", true, 12, "+12 147103103",ConferenceRoomEquipment.ConnectionType.USB)));
+        conferenceRoomsGoogle.add( new ConferenceRoom("WideRoom", "40", 4, true, 15, 8, 6,
+                    new ConferenceRoomEquipment("Delta", false, 99, "+12 999999999",ConferenceRoomEquipment.ConnectionType.Bluetooth)));
+        conferenceRoomsGoogle.add( new ConferenceRoom("SpecialRoom", "41", 4, true, 25, 22, 3,
+                new ConferenceRoomEquipment("Delta", true, 99, "+12 987654321",ConferenceRoomEquipment.ConnectionType.Bluetooth)));
+
+        organizationRepository.save(new Organization("IBM",conferenceRoomsIBM));
+        organizationRepository.save(new Organization("Google",conferenceRoomsGoogle));
         organizationRepository.save(new Organization("Red Hat"));
         organizationRepository.save(new Organization("Oracle"));
 

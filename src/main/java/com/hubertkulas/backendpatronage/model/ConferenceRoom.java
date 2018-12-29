@@ -9,6 +9,7 @@ import javax.validation.constraints.Size;
 
 @Entity
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@Table(name = "conference_room")
 public class ConferenceRoom {
 
     @Id
@@ -28,14 +29,13 @@ public class ConferenceRoom {
     @Range(min = 0, max =10, message = "Minimal value of floor should be 0 and maximum value should be 10")
     private int floor;
 
-
     private boolean isAvailable;
-
     private int standingPlaces;
     private int seats;
     private int hangingPlaces;
+    
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL)
     private ConferenceRoomEquipment conferenceRoomEquipment;
 
 
@@ -130,4 +130,5 @@ public class ConferenceRoom {
     public void setConferenceRoomEquipment(ConferenceRoomEquipment conferenceRoomEquipment) {
         this.conferenceRoomEquipment = conferenceRoomEquipment;
     }
+
 }
