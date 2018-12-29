@@ -13,7 +13,7 @@ public interface ConferenceRoomService {
 
     void add(ConferenceRoom conferenceRoom);
 
-    void update(Long id, ConferenceRoom conferenceRoom);
+    ConferenceRoom update(Long id, ConferenceRoom conferenceRoom);
 
     void delete(Long id);
 }

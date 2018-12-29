@@ -1,6 +1,7 @@
 package com.hubertkulas.backendpatronage.controller;
 
 import com.hubertkulas.backendpatronage.model.ConferenceRoomReservation;
+import com.hubertkulas.backendpatronage.repository.ConferenceRoomReservationRepository;
 import com.hubertkulas.backendpatronage.service.ConferenceRoomReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -13,6 +14,9 @@ public class ConferenceRoomReservationController {
 
     @Autowired
     private ConferenceRoomReservationService conferenceRoomReservationService;
+
+    @Autowired
+    private ConferenceRoomReservationRepository conferenceRoomReservationRepository;
 
     @RequestMapping("/{id}")
     public ConferenceRoomReservation get(@PathVariable Long id){
@@ -30,8 +34,9 @@ public class ConferenceRoomReservationController {
     }
 
     @RequestMapping(method = RequestMethod.PUT, value ="/{id}")
-    public void update(@RequestBody ConferenceRoomReservation conferenceRoomReservation, @PathVariable Long id){
-        conferenceRoomReservationService.update(id,conferenceRoomReservation);
+    public ConferenceRoomReservation update(@RequestBody ConferenceRoomReservation conferenceRoomReservation, @PathVariable Long id){
+       return conferenceRoomReservationService.update(id,conferenceRoomReservation);
+
     }
 
     @RequestMapping(method = RequestMethod.DELETE, value = "/{id}")

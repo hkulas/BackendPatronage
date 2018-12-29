@@ -17,27 +17,29 @@ public class ConferenceRoom {
     private Long id;
 
     @Column(unique = true)
-    @Size(min = 2, max =20, message = "The size of 'room name' should be between 2 and 20")
+    @Size(min = 2, max = 20, message = "The size of 'room name' should be between 2 and 20")
     @NotBlank(message = "'room name' should not be blank")
     private String roomName;
 
     @Column(unique = true)
-    @Size(min = 2, max =20, message = "The size of 'id of room' should be between 2 and 20")
+    @Size(min = 2, max = 20, message = "The size of 'id of room' should be between 2 and 20")
     @NotBlank(message = "'id of room' should not be blank")
     private String idOfRoom;
 
-    @Range(min = 0, max =10, message = "Minimal value of floor should be 0 and maximum value should be 10")
+    @Range(min = 0, max = 10, message = "Minimal value of floor should be 0 and maximum value should be 10")
     private int floor;
 
     private boolean isAvailable;
     private int standingPlaces;
     private int seats;
     private int hangingPlaces;
-    
+
 
     @OneToOne(cascade = CascadeType.ALL)
     private ConferenceRoomEquipment conferenceRoomEquipment;
 
+//    @ManyToOne(cascade = CascadeType.ALL)
+//    private Organization organization;
 
     public ConferenceRoom() {
     }
@@ -52,7 +54,6 @@ public class ConferenceRoom {
         this.hangingPlaces = hangingPlaces;
         this.conferenceRoomEquipment = conferenceRoomEquipment;
     }
-
 
 
     public String getRoomName() {
@@ -79,15 +80,11 @@ public class ConferenceRoom {
         this.floor = floor;
     }
 
-    public boolean isAvailable() {
+    public boolean getIsAvailable() {
         return isAvailable;
     }
 
-    public void setisItAvailable(boolean itAvailable) {
-        isAvailable = isAvailable;
-    }
-
-    public void setAvailable(boolean isAvailable) {
+    public void setIsAvailable(boolean isAvailable) {
         isAvailable = isAvailable;
     }
 
@@ -131,4 +128,11 @@ public class ConferenceRoom {
         this.conferenceRoomEquipment = conferenceRoomEquipment;
     }
 
+//    public Organization getOrganization() {
+//        return organization;
+//    }
+//
+//    public void setOrganization(Organization organization) {
+//        this.organization = organization;
+//    }
 }

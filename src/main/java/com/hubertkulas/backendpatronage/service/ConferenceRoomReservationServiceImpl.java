@@ -1,7 +1,7 @@
 package com.hubertkulas.backendpatronage.service;
 
-import com.hubertkulas.backendpatronage.repository.ConferenceRoomReservationRepository;
 import com.hubertkulas.backendpatronage.model.ConferenceRoomReservation;
+import com.hubertkulas.backendpatronage.repository.ConferenceRoomReservationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,6 +9,8 @@ import java.util.List;
 
 @Service
 public class ConferenceRoomReservationServiceImpl implements ConferenceRoomReservationService {
+
+
 
     @Autowired
     private ConferenceRoomReservationRepository conferenceRoomReservationRepository;
@@ -30,8 +32,18 @@ public class ConferenceRoomReservationServiceImpl implements ConferenceRoomReser
     }
 
     @Override
-    public void update(Long id, ConferenceRoomReservation conferenceRoomReservation) {
-        conferenceRoomReservationRepository.save(conferenceRoomReservation);
+    public ConferenceRoomReservation update(Long id, ConferenceRoomReservation conferenceRoomReservation) {
+
+        return conferenceRoomReservationRepository.findById(id).map(newConferenceRoomReservation -> {
+        newConferenceRoomReservation.setPersonalId(conferenceRoomReservation.getPersonalId());
+        newConferenceRoomReservation.setStartOfReservation(conferenceRoomReservation.getStartOfReservation());
+        newConferenceRoomReservation.setEndOfReservation(conferenceRoomReservation.getEndOfReservation());
+        return conferenceRoomReservationRepository.save(newConferenceRoomReservation);
+        }).orElseGet(() ->{
+            conferenceRoomReservation.setId(id);
+            return conferenceRoomReservationRepository.save(conferenceRoomReservation);
+        });
+
     }
 
     @Override

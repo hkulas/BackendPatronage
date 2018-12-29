@@ -29,8 +29,22 @@ public class ConferenceRoomServiceImpl implements ConferenceRoomService {
     }
 
     @Override
-    public void update(Long id, ConferenceRoom conferenceRoom) {
-        conferenceRoomRepository.save(conferenceRoom);
+    public ConferenceRoom update(Long id, ConferenceRoom conferenceRoom) {
+        return conferenceRoomRepository.findById(id).map(newConferenceRoom -> {
+            newConferenceRoom.setRoomName(conferenceRoom.getRoomName());
+            newConferenceRoom.setIdOfRoom(conferenceRoom.getIdOfRoom());
+            newConferenceRoom.setFloor(conferenceRoom.getFloor());
+            newConferenceRoom.setIsAvailable(conferenceRoom.getIsAvailable());
+            newConferenceRoom.setStandingPlaces(conferenceRoom.getStandingPlaces());
+            newConferenceRoom.setSeats(conferenceRoom.getSeats());
+            newConferenceRoom.setHangingPlaces(conferenceRoom.getSeats());
+            newConferenceRoom.setConferenceRoomEquipment(conferenceRoom.getConferenceRoomEquipment());
+
+            return conferenceRoomRepository.save(newConferenceRoom);
+        }).orElseGet(() ->{
+            conferenceRoom.setId(id);
+            return conferenceRoomRepository.save(conferenceRoom);
+        });
     }
 
     @Override

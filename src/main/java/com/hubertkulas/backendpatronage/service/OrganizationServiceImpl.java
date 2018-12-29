@@ -29,8 +29,18 @@ public class OrganizationServiceImpl implements  OrganizationService {
     }
 
     @Override
-    public void update(Long id,Organization organization) {
-        organizationRepository.save(organization);
+    public Organization update(Long id,Organization organization) {
+        return organizationRepository.findById(id).map(newOrganization -> {
+            newOrganization.setOrganizationName(organization.getOrganizationName());
+            newOrganization.setConferenceRooms(organization.getConferenceRooms());
+
+            return organizationRepository.save(newOrganization);
+        }).orElseGet(() ->{
+            organization.setId(id);
+            return organizationRepository.save(organization);
+        });
+
+
     }
 
     @Override

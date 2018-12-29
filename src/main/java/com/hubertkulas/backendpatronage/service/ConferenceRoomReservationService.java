@@ -12,7 +12,7 @@ public interface ConferenceRoomReservationService {
 
     void add(ConferenceRoomReservation conferenceRoomReservation);
 
-    void update(Long id, ConferenceRoomReservation conferenceRoomReservation);
+    ConferenceRoomReservation update(Long id, ConferenceRoomReservation conferenceRoomReservation);
 
     void delete(Long id);
 }
