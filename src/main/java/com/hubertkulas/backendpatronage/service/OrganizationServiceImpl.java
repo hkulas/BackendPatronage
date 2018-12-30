@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class OrganizationServiceImpl implements  OrganizationService {
+public class OrganizationServiceImpl implements OrganizationService {
 
     @Autowired
     private OrganizationRepository organizationRepository;
@@ -29,13 +29,13 @@ public class OrganizationServiceImpl implements  OrganizationService {
     }
 
     @Override
-    public Organization update(Long id,Organization organization) {
+    public Organization update(Long id, Organization organization) {
         return organizationRepository.findById(id).map(newOrganization -> {
             newOrganization.setOrganizationName(organization.getOrganizationName());
             newOrganization.setConferenceRooms(organization.getConferenceRooms());
 
             return organizationRepository.save(newOrganization);
-        }).orElseGet(() ->{
+        }).orElseGet(() -> {
             organization.setId(id);
             return organizationRepository.save(organization);
         });

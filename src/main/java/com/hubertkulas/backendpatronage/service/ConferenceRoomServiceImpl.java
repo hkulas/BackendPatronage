@@ -41,7 +41,7 @@ public class ConferenceRoomServiceImpl implements ConferenceRoomService {
             newConferenceRoom.setConferenceRoomEquipment(conferenceRoom.getConferenceRoomEquipment());
 
             return conferenceRoomRepository.save(newConferenceRoom);
-        }).orElseGet(() ->{
+        }).orElseGet(() -> {
             conferenceRoom.setId(id);
             return conferenceRoomRepository.save(conferenceRoom);
         });
@@ -51,4 +51,5 @@ public class ConferenceRoomServiceImpl implements ConferenceRoomService {
     public void delete(Long id) {
         conferenceRoomRepository.deleteById(id);
     }
+
 }

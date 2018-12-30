@@ -11,7 +11,6 @@ import java.util.List;
 public class ConferenceRoomReservationServiceImpl implements ConferenceRoomReservationService {
 
 
-
     @Autowired
     private ConferenceRoomReservationRepository conferenceRoomReservationRepository;
 
@@ -35,11 +34,11 @@ public class ConferenceRoomReservationServiceImpl implements ConferenceRoomReser
     public ConferenceRoomReservation update(Long id, ConferenceRoomReservation conferenceRoomReservation) {
 
         return conferenceRoomReservationRepository.findById(id).map(newConferenceRoomReservation -> {
-        newConferenceRoomReservation.setPersonalId(conferenceRoomReservation.getPersonalId());
-        newConferenceRoomReservation.setStartOfReservation(conferenceRoomReservation.getStartOfReservation());
-        newConferenceRoomReservation.setEndOfReservation(conferenceRoomReservation.getEndOfReservation());
-        return conferenceRoomReservationRepository.save(newConferenceRoomReservation);
-        }).orElseGet(() ->{
+            newConferenceRoomReservation.setPersonalId(conferenceRoomReservation.getPersonalId());
+            newConferenceRoomReservation.setStartOfReservation(conferenceRoomReservation.getStartOfReservation());
+            newConferenceRoomReservation.setEndOfReservation(conferenceRoomReservation.getEndOfReservation());
+            return conferenceRoomReservationRepository.save(newConferenceRoomReservation);
+        }).orElseGet(() -> {
             conferenceRoomReservation.setId(id);
             return conferenceRoomReservationRepository.save(conferenceRoomReservation);
         });
@@ -51,4 +50,6 @@ public class ConferenceRoomReservationServiceImpl implements ConferenceRoomReser
         conferenceRoomReservationRepository.deleteById(id);
 
     }
+
+
 }
