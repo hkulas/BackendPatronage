@@ -25,11 +25,13 @@ public class ConferenceRoomServiceImpl implements ConferenceRoomService {
 
     @Override
     public void add(ConferenceRoom conferenceRoom) {
+        validateRoomNameIdOfRoom(conferenceRoom);
         conferenceRoomRepository.save(conferenceRoom);
     }
 
     @Override
     public ConferenceRoom update(Long id, ConferenceRoom conferenceRoom) {
+        validateRoomNameIdOfRoom(conferenceRoom);
         return conferenceRoomRepository.findById(id).map(newConferenceRoom -> {
             newConferenceRoom.setRoomName(conferenceRoom.getRoomName());
             newConferenceRoom.setIdOfRoom(conferenceRoom.getIdOfRoom());
@@ -50,6 +52,18 @@ public class ConferenceRoomServiceImpl implements ConferenceRoomService {
     @Override
     public void delete(Long id) {
         conferenceRoomRepository.deleteById(id);
+    }
+
+    private void validateRoomNameIdOfRoom(ConferenceRoom conferenceRoom){
+        List<ConferenceRoom> conferenceRooms = conferenceRoomRepository.findAll();
+        for (ConferenceRoom newConferenceRoom : conferenceRooms) {
+            if (newConferenceRoom.getRoomName().equals(conferenceRoom.getRoomName())) {
+                throw new IllegalArgumentException("'room name' field is not unique");
+            }
+            if (newConferenceRoom.getIdOfRoom().equals(conferenceRoom.getIdOfRoom())) {
+                throw new IllegalArgumentException("'id of room' field is not unique");
+            }
+        }
     }
 
 }

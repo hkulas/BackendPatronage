@@ -38,9 +38,6 @@ public class ConferenceRoom {
     @OneToOne(cascade = CascadeType.ALL)
     private ConferenceRoomEquipment conferenceRoomEquipment;
 
-//    @ManyToOne(cascade = CascadeType.ALL)
-//    private Organization organization;
-
     public ConferenceRoom() {
     }
 

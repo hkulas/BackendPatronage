@@ -26,13 +26,14 @@ public class ConferenceRoomReservationServiceImpl implements ConferenceRoomReser
 
     @Override
     public void add(ConferenceRoomReservation conferenceRoomReservation) {
+        validatePersonalId(conferenceRoomReservation);
         conferenceRoomReservationRepository.save(conferenceRoomReservation);
 
     }
 
     @Override
     public ConferenceRoomReservation update(Long id, ConferenceRoomReservation conferenceRoomReservation) {
-
+        validatePersonalId(conferenceRoomReservation);
         return conferenceRoomReservationRepository.findById(id).map(newConferenceRoomReservation -> {
             newConferenceRoomReservation.setPersonalId(conferenceRoomReservation.getPersonalId());
             newConferenceRoomReservation.setStartOfReservation(conferenceRoomReservation.getStartOfReservation());
@@ -42,13 +43,22 @@ public class ConferenceRoomReservationServiceImpl implements ConferenceRoomReser
             conferenceRoomReservation.setId(id);
             return conferenceRoomReservationRepository.save(conferenceRoomReservation);
         });
-
     }
 
     @Override
     public void delete(Long id) {
         conferenceRoomReservationRepository.deleteById(id);
 
+    }
+
+    private void validatePersonalId(ConferenceRoomReservation conferenceRoomReservation) {
+        List<ConferenceRoomReservation> conferenceRoomReservations = conferenceRoomReservationRepository.findAll();
+        for (ConferenceRoomReservation newConferenceRoomReservation : conferenceRoomReservations) {
+            if (newConferenceRoomReservation.getPersonalId().equals(conferenceRoomReservation.getPersonalId())) {
+                throw new IllegalArgumentException("'personal id' field is not unique");
+            }
+
+        }
     }
 
 

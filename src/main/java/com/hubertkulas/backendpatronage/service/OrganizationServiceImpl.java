@@ -25,11 +25,13 @@ public class OrganizationServiceImpl implements OrganizationService {
 
     @Override
     public void add(Organization organization) {
+        validateOrganizationName(organization);
         organizationRepository.save(organization);
     }
 
     @Override
     public Organization update(Long id, Organization organization) {
+        validateOrganizationName(organization);
         return organizationRepository.findById(id).map(newOrganization -> {
             newOrganization.setOrganizationName(organization.getOrganizationName());
             newOrganization.setConferenceRooms(organization.getConferenceRooms());
@@ -39,12 +41,20 @@ public class OrganizationServiceImpl implements OrganizationService {
             organization.setId(id);
             return organizationRepository.save(organization);
         });
-
-
     }
 
     @Override
     public void delete(Long id) {
         organizationRepository.deleteById(id);
+    }
+
+    private void validateOrganizationName(Organization organization){
+        List<Organization> organizations = organizationRepository.findAll();
+        for (Organization newOrganization : organizations) {
+            if (newOrganization.getOrganizationName().equals(organization.getOrganizationName())) {
+                throw new IllegalArgumentException("'organization name' field is not unique");
+            }
+
+        }
     }
 }
