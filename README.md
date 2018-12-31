@@ -128,7 +128,7 @@ curl -d "{json}" -H "Content-Type: application/json" -X PUT {your address}
 ```
 example:
 ```
-curl -d "{\"id\":2,\"organizationName\":\"Intive\"}" -H "Content-Type: application/json"
+curl -d "{\"organizationName\":\"Intive\"}" -H "Content-Type: application/json"
 -X PUT http://localhost:8080/Organizations/2
 ```
 
