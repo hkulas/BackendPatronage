@@ -50,11 +50,17 @@ public class OrganizationServiceImpl implements OrganizationService {
 
     private void validateOrganizationName(Organization organization){
         List<Organization> organizations = organizationRepository.findAll();
-        for (Organization newOrganization : organizations) {
-            if (newOrganization.getOrganizationName().equals(organization.getOrganizationName())) {
-                throw new IllegalArgumentException("'organization name' field is not unique");
-            }
-
-        }
+        organizations.forEach(newOrganization ->{
+                if(newOrganization.getOrganizationName().equals(organization.getOrganizationName())){
+                    throw new IllegalArgumentException("'organization name' field is not unique");
+                }
+        });
     }
+//        for (Organization newOrganization : organizations) {
+//            if (newOrganization.getOrganizationName().equals(organization.getOrganizationName())) {
+//                throw new IllegalArgumentException("'organization name' field is not unique");
+//            }
+//
+//        }
+
 }

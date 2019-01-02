@@ -53,12 +53,19 @@ public class ConferenceRoomReservationServiceImpl implements ConferenceRoomReser
 
     private void validatePersonalId(ConferenceRoomReservation conferenceRoomReservation) {
         List<ConferenceRoomReservation> conferenceRoomReservations = conferenceRoomReservationRepository.findAll();
-        for (ConferenceRoomReservation newConferenceRoomReservation : conferenceRoomReservations) {
+
+        conferenceRoomReservations.forEach(newConferenceRoomReservation ->{
             if (newConferenceRoomReservation.getPersonalId().equals(conferenceRoomReservation.getPersonalId())) {
                 throw new IllegalArgumentException("'personal id' field is not unique");
             }
+        });
 
-        }
+//        for (ConferenceRoomReservation newConferenceRoomReservation : conferenceRoomReservations) {
+//            if (newConferenceRoomReservation.getPersonalId().equals(conferenceRoomReservation.getPersonalId())) {
+//                throw new IllegalArgumentException("'personal id' field is not unique");
+//            }
+//
+//        }
     }
 
 
