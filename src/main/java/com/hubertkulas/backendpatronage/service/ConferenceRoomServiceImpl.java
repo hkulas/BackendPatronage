@@ -56,14 +56,23 @@ public class ConferenceRoomServiceImpl implements ConferenceRoomService {
 
     private void validateRoomNameIdOfRoom(ConferenceRoom conferenceRoom){
         List<ConferenceRoom> conferenceRooms = conferenceRoomRepository.findAll();
-        for (ConferenceRoom newConferenceRoom : conferenceRooms) {
+
+        conferenceRooms.forEach(newConferenceRoom ->{
             if (newConferenceRoom.getRoomName().equals(conferenceRoom.getRoomName())) {
                 throw new IllegalArgumentException("'room name' field is not unique");
             }
             if (newConferenceRoom.getIdOfRoom().equals(conferenceRoom.getIdOfRoom())) {
                 throw new IllegalArgumentException("'id of room' field is not unique");
             }
-        }
+        });
+//        for (ConferenceRoom newConferenceRoom : conferenceRooms) {
+//            if (newConferenceRoom.getRoomName().equals(conferenceRoom.getRoomName())) {
+//                throw new IllegalArgumentException("'room name' field is not unique");
+//            }
+//            if (newConferenceRoom.getIdOfRoom().equals(conferenceRoom.getIdOfRoom())) {
+//                throw new IllegalArgumentException("'id of room' field is not unique");
+//            }
+//        }
     }
 
 }
