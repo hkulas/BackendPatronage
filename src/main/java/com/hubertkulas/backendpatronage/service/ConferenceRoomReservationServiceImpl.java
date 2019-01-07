@@ -60,12 +60,6 @@ public class ConferenceRoomReservationServiceImpl implements ConferenceRoomReser
             }
         });
 
-//        for (ConferenceRoomReservation newConferenceRoomReservation : conferenceRoomReservations) {
-//            if (newConferenceRoomReservation.getPersonalId().equals(conferenceRoomReservation.getPersonalId())) {
-//                throw new IllegalArgumentException("'personal id' field is not unique");
-//            }
-//
-//        }
     }
 
 

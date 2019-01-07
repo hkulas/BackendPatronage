@@ -56,11 +56,5 @@ public class OrganizationServiceImpl implements OrganizationService {
                 }
         });
     }
-//        for (Organization newOrganization : organizations) {
-//            if (newOrganization.getOrganizationName().equals(organization.getOrganizationName())) {
-//                throw new IllegalArgumentException("'organization name' field is not unique");
-//            }
-//
-//        }
 
 }

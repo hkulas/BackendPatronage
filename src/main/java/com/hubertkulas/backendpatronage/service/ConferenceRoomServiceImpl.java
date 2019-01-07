@@ -65,14 +65,7 @@ public class ConferenceRoomServiceImpl implements ConferenceRoomService {
                 throw new IllegalArgumentException("'id of room' field is not unique");
             }
         });
-//        for (ConferenceRoom newConferenceRoom : conferenceRooms) {
-//            if (newConferenceRoom.getRoomName().equals(conferenceRoom.getRoomName())) {
-//                throw new IllegalArgumentException("'room name' field is not unique");
-//            }
-//            if (newConferenceRoom.getIdOfRoom().equals(conferenceRoom.getIdOfRoom())) {
-//                throw new IllegalArgumentException("'id of room' field is not unique");
-//            }
-//        }
+
     }
 
 }
