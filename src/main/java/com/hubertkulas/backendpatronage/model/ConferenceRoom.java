@@ -125,11 +125,4 @@ public class ConferenceRoom {
         this.conferenceRoomEquipment = conferenceRoomEquipment;
     }
 
-//    public Organization getOrganization() {
-//        return organization;
-//    }
-//
-//    public void setOrganization(Organization organization) {
-//        this.organization = organization;
-//    }
 }

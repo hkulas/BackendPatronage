@@ -1,6 +1,6 @@
 package com.hubertkulas.backendpatronage.controller;
 
-import com.hubertkulas.backendpatronage.model.ConferenceRoomReservation;
+import com.hubertkulas.backendpatronage.dto.ConferenceRoomReservationDto;
 import com.hubertkulas.backendpatronage.repository.ConferenceRoomReservationRepository;
 import com.hubertkulas.backendpatronage.service.ConferenceRoomReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,23 +19,23 @@ public class ConferenceRoomReservationController {
     private ConferenceRoomReservationRepository conferenceRoomReservationRepository;
 
     @RequestMapping("/{id}")
-    public ConferenceRoomReservation get(@PathVariable Long id){
+    public ConferenceRoomReservationDto get(@PathVariable Long id){
         return conferenceRoomReservationService.get(id);
 
     }
     @RequestMapping()
-    public List<ConferenceRoomReservation> getAll(){
+    public List<ConferenceRoomReservationDto> getAll(){
         return conferenceRoomReservationService.getAll();
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public void add(@RequestBody ConferenceRoomReservation conferenceRoomReservation){
-        conferenceRoomReservationService.add(conferenceRoomReservation);
+    public void add(@RequestBody ConferenceRoomReservationDto conferenceRoomReservationDto){
+        conferenceRoomReservationService.add(conferenceRoomReservationDto);
     }
 
     @RequestMapping(method = RequestMethod.PUT, value ="/{id}")
-    public ConferenceRoomReservation update(@RequestBody ConferenceRoomReservation conferenceRoomReservation, @PathVariable Long id){
-       return conferenceRoomReservationService.update(id,conferenceRoomReservation);
+    public void update(@RequestBody ConferenceRoomReservationDto conferenceRoomReservationDto, @PathVariable Long id){
+      conferenceRoomReservationService.update(id,conferenceRoomReservationDto);
 
     }
 

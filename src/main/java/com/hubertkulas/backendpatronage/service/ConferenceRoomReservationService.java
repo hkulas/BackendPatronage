@@ -1,18 +1,18 @@
 package com.hubertkulas.backendpatronage.service;
 
-import com.hubertkulas.backendpatronage.model.ConferenceRoomReservation;
+import com.hubertkulas.backendpatronage.dto.ConferenceRoomReservationDto;
 
 import java.util.List;
 
 public interface ConferenceRoomReservationService {
 
-    List<ConferenceRoomReservation> getAll();
+    List<ConferenceRoomReservationDto> getAll();
 
-    ConferenceRoomReservation get(Long id);
+    ConferenceRoomReservationDto get(Long id);
 
-    void add(ConferenceRoomReservation conferenceRoomReservation);
+    void add(ConferenceRoomReservationDto conferenceRoomReservationDto);
 
-    ConferenceRoomReservation update(Long id, ConferenceRoomReservation conferenceRoomReservation);
+    void update(Long id, ConferenceRoomReservationDto conferenceRoomReservationDto);
 
     void delete(Long id);
 }

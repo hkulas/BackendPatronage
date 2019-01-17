@@ -41,7 +41,8 @@ public class DataBaseLoader implements CommandLineRunner {
         logger.info("Populated db");
 
 
-        ArrayList<ConferenceRoom> conferenceRoomsIBM = new ArrayList<>();
+        var conferenceRoomsIBM = new ArrayList<ConferenceRoom>();
+
         conferenceRoomsIBM.add(new ConferenceRoom("BlueRoom", "10", 1, true, 20, 30, 0,
                    new ConferenceRoomEquipment("Alfa", true, 56, "+12 123123123",ConferenceRoomEquipment.ConnectionType.Bluetooth)));
         conferenceRoomsIBM.add(new ConferenceRoom("RedWall", "20", 2, true, 20, 10, 0,

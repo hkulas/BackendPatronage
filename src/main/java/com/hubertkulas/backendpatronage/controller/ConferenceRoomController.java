@@ -10,6 +10,8 @@ import java.util.List;
 @RestController
 @RequestMapping("/ConferenceRooms")
 public class ConferenceRoomController {
+
+
     @Autowired
     private ConferenceRoomService conferenceRoomService;
 
