@@ -1,17 +1,17 @@
 package com.hubertkulas.backendpatronage.service;
 
-import com.hubertkulas.backendpatronage.model.Organization;
+import com.hubertkulas.backendpatronage.dto.OrganizationDto;
 
 import java.util.List;
 
 public interface OrganizationService {
-    List<Organization> getAll();
+    List<OrganizationDto> getAll();
 
-    Organization get(Long id);
+    OrganizationDto get(Long id);
 
-    void add(Organization organization);
+    void add(OrganizationDto organizationDto);
 
-    Organization update(Long id, Organization organization);
+    void update(Long id, OrganizationDto organizationDto);
 
     void delete(Long id);
 }

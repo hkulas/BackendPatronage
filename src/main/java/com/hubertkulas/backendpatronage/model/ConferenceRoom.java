@@ -82,7 +82,7 @@ public class ConferenceRoom {
     }
 
     public void setIsAvailable(boolean isAvailable) {
-        isAvailable = isAvailable;
+        this.isAvailable = isAvailable;
     }
 
     public int getStandingPlaces() {

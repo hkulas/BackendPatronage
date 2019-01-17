@@ -1,19 +1,19 @@
 package com.hubertkulas.backendpatronage.service;
 
-import com.hubertkulas.backendpatronage.model.ConferenceRoom;
+import com.hubertkulas.backendpatronage.dto.ConferenceRoomDto;
 
 import java.util.List;
 
 
 public interface ConferenceRoomService {
 
-    List<ConferenceRoom> getAll();
+    List<ConferenceRoomDto> getAll();
 
-    ConferenceRoom get(Long id);
+    ConferenceRoomDto get(Long id);
 
-    void add(ConferenceRoom conferenceRoom);
+    void add(ConferenceRoomDto conferenceRoomDto);
 
-    ConferenceRoom update(Long id, ConferenceRoom conferenceRoom);
+    void update(Long id, ConferenceRoomDto conferenceRoomDto);
 
     void delete(Long id);
 }

@@ -82,7 +82,7 @@ public class ConferenceRoomReservationServiceImpl implements ConferenceRoomReser
         BeanUtils.copyProperties(conferenceRoomReservationDto,conferenceRoomReservation);
         return conferenceRoomReservation;
     }
-    public ConferenceRoomReservation returnUpdate(Long id, ConferenceRoomReservation conferenceRoomReservation) {
+    private ConferenceRoomReservation returnUpdate(Long id, ConferenceRoomReservation conferenceRoomReservation) {
         return conferenceRoomReservationRepository.findById(id).map(newConferenceRoomReservation -> {
             newConferenceRoomReservation.setPersonalId(conferenceRoomReservation.getPersonalId());
             newConferenceRoomReservation.setStartOfReservation(conferenceRoomReservation.getStartOfReservation());

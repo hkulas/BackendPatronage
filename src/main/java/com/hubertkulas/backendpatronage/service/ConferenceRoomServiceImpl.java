@@ -1,10 +1,13 @@
 package com.hubertkulas.backendpatronage.service;
 
+import com.hubertkulas.backendpatronage.dto.ConferenceRoomDto;
 import com.hubertkulas.backendpatronage.model.ConferenceRoom;
 import com.hubertkulas.backendpatronage.repository.ConferenceRoomRepository;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -14,39 +17,36 @@ public class ConferenceRoomServiceImpl implements ConferenceRoomService {
     private ConferenceRoomRepository conferenceRoomRepository;
 
     @Override
-    public List<ConferenceRoom> getAll() {
-        return conferenceRoomRepository.findAll();
+    public List<ConferenceRoomDto> getAll() {
+        var conferenceRooms = conferenceRoomRepository.findAll();
+        var conferenceRoomDtos = new ArrayList<ConferenceRoomDto>();
+
+        for (ConferenceRoom conferenceRoom : conferenceRooms) {
+            ConferenceRoomDto conferenceRoomDto = convertToDto(conferenceRoom);
+            conferenceRoomDtos.add(conferenceRoomDto);
+        }
+        return conferenceRoomDtos;
     }
 
     @Override
-    public ConferenceRoom get(Long id) {
-        return conferenceRoomRepository.getOne(id);
+    public ConferenceRoomDto get(Long id) {
+        return convertToDto(conferenceRoomRepository.getOne(id));
     }
 
     @Override
-    public void add(ConferenceRoom conferenceRoom) {
+    public void add(ConferenceRoomDto conferenceRoomDto) {
+        ConferenceRoom conferenceRoom = convertToEntity(conferenceRoomDto);
         validateRoomNameIdOfRoom(conferenceRoom);
         conferenceRoomRepository.save(conferenceRoom);
     }
 
     @Override
-    public ConferenceRoom update(Long id, ConferenceRoom conferenceRoom) {
+    public void update(Long id, ConferenceRoomDto conferenceRoomDto) {
+        ConferenceRoom conferenceRoom = convertToEntity(conferenceRoomDto);
         validateRoomNameIdOfRoom(conferenceRoom);
-        return conferenceRoomRepository.findById(id).map(newConferenceRoom -> {
-            newConferenceRoom.setRoomName(conferenceRoom.getRoomName());
-            newConferenceRoom.setIdOfRoom(conferenceRoom.getIdOfRoom());
-            newConferenceRoom.setFloor(conferenceRoom.getFloor());
-            newConferenceRoom.setIsAvailable(conferenceRoom.getIsAvailable());
-            newConferenceRoom.setStandingPlaces(conferenceRoom.getStandingPlaces());
-            newConferenceRoom.setSeats(conferenceRoom.getSeats());
-            newConferenceRoom.setHangingPlaces(conferenceRoom.getSeats());
-            newConferenceRoom.setConferenceRoomEquipment(conferenceRoom.getConferenceRoomEquipment());
+        returnUpdate(id,conferenceRoom);
+//        returnUpdate2(id,conferenceRoom);
 
-            return conferenceRoomRepository.save(newConferenceRoom);
-        }).orElseGet(() -> {
-            conferenceRoom.setId(id);
-            return conferenceRoomRepository.save(conferenceRoom);
-        });
     }
 
     @Override
@@ -67,5 +67,53 @@ public class ConferenceRoomServiceImpl implements ConferenceRoomService {
         });
 
     }
+    private ConferenceRoomDto convertToDto(ConferenceRoom conferenceRoom){
+
+        var conferenceRoomDto = new ConferenceRoomDto();
+        BeanUtils.copyProperties(conferenceRoom,conferenceRoomDto);
+        return conferenceRoomDto;
+    }
+
+    private ConferenceRoom convertToEntity(ConferenceRoomDto conferenceRoomDto){
+
+        var conferenceRoom = new ConferenceRoom();
+        BeanUtils.copyProperties(conferenceRoomDto,conferenceRoom);
+        return conferenceRoom;
+    }
+
+    private ConferenceRoom returnUpdate(Long id, ConferenceRoom conferenceRoom){
+        return conferenceRoomRepository.findById(id).map(newConferenceRoom -> {
+            newConferenceRoom.setRoomName(conferenceRoom.getRoomName());
+            newConferenceRoom.setIdOfRoom(conferenceRoom.getIdOfRoom());
+            newConferenceRoom.setFloor(conferenceRoom.getFloor());
+            newConferenceRoom.setIsAvailable(conferenceRoom.getIsAvailable());
+            newConferenceRoom.setStandingPlaces(conferenceRoom.getStandingPlaces());
+            newConferenceRoom.setSeats(conferenceRoom.getSeats());
+            newConferenceRoom.setHangingPlaces(conferenceRoom.getSeats());
+            newConferenceRoom.setConferenceRoomEquipment(conferenceRoom.getConferenceRoomEquipment());
+
+            return conferenceRoomRepository.save(newConferenceRoom);
+        }).orElseGet(() -> {
+            conferenceRoom.setId(id);
+            return conferenceRoomRepository.save(conferenceRoom);
+        });
+    }
+
+//    private ConferenceRoom returnUpdate2(Long id, ConferenceRoom conferenceRoom){
+//        ConferenceRoom conferenceRoom1 = conferenceRoomRepository.findById(id)
+//                .orElseThrow(() -> new ObjectNotFoundException(id,"There is no such exception"));
+//
+//        conferenceRoom1.setRoomName(conferenceRoom.getRoomName());
+//        conferenceRoom1.setIdOfRoom(conferenceRoom.getIdOfRoom());
+//        conferenceRoom1.setFloor(conferenceRoom.getFloor());
+//        conferenceRoom1.setIsAvailable(conferenceRoom.getIsAvailable());
+//        conferenceRoom1.setStandingPlaces(conferenceRoom.getStandingPlaces());
+//        conferenceRoom1.setSeats(conferenceRoom.getSeats());
+//        conferenceRoom1.setHangingPlaces(conferenceRoom.getSeats());
+//        conferenceRoom1.setConferenceRoomEquipment(conferenceRoom.getConferenceRoomEquipment());
+//
+//        ConferenceRoom updatedConferenceRoom = conferenceRoomRepository.save(conferenceRoom1);
+//        return updatedConferenceRoom;
+//    }
 
 }

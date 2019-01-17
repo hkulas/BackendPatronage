@@ -1,5 +1,6 @@
 package com.hubertkulas.backendpatronage.exception;
 
+import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -13,7 +14,7 @@ import java.time.LocalDateTime;
 public class CustomeExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(Exception.class)
-    public final ResponseEntity<ErrorMessage> defaultErrorMessage(Exception ex, WebRequest webRequest) {
+    public final ResponseEntity<ErrorMessage> defaultErrorMessage(Exception ex, WebRequest webRequest, ConstraintViolationException constraintViolationException) {
 
         ErrorMessage errorMessage = new ErrorMessage(LocalDateTime.now(), HttpStatus.BAD_REQUEST.value(), HttpStatus.BAD_REQUEST.name(), ex.getMessage(),
                 webRequest.getDescription(false));
