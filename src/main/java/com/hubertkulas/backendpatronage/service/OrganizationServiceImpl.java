@@ -30,6 +30,7 @@ public class OrganizationServiceImpl implements OrganizationService {
 
     @Override
     public OrganizationDto get(Long id) {
+        validateId(id);
         return convertToDto(organizationRepository.getOne(id));
     }
 
@@ -42,6 +43,7 @@ public class OrganizationServiceImpl implements OrganizationService {
 
     @Override
     public void update(Long id, OrganizationDto organizationDto) {
+        validateId(id);
         Organization organization = convertToEntity(organizationDto);
         validateOrganizationName(organization);
         updateReturn(id,organization);
@@ -49,6 +51,7 @@ public class OrganizationServiceImpl implements OrganizationService {
 
     @Override
     public void delete(Long id) {
+        validateId(id);
         organizationRepository.deleteById(id);
     }
 
@@ -60,7 +63,11 @@ public class OrganizationServiceImpl implements OrganizationService {
                 }
         });
     }
-
+    private void validateId(Long id) {
+        if (id > organizationRepository.findAll().size()) {
+            throw new IllegalArgumentException("Organization with specified id does not exist");
+        }
+    }
     private OrganizationDto convertToDto(Organization organization){
 
         var organizationDto= new OrganizationDto();

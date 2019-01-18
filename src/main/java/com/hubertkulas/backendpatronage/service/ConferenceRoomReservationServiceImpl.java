@@ -33,7 +33,7 @@ public class ConferenceRoomReservationServiceImpl implements ConferenceRoomReser
 
     @Override
     public ConferenceRoomReservationDto get(Long id) {
-
+        validateId(id);
         return convertToDto(conferenceRoomReservationRepository.getOne(id));
     }
 
@@ -47,14 +47,16 @@ public class ConferenceRoomReservationServiceImpl implements ConferenceRoomReser
 
     @Override
     public void update(Long id, ConferenceRoomReservationDto conferenceRoomReservationDto) {
+        validateId(id);
         ConferenceRoomReservation conferenceRoomReservation = convertToEntity(conferenceRoomReservationDto);
         validatePersonalId(conferenceRoomReservation);
-        returnUpdate(id,conferenceRoomReservation);
+        returnUpdate(id, conferenceRoomReservation);
 
     }
 
     @Override
     public void delete(Long id) {
+        validateId(id);
         conferenceRoomReservationRepository.deleteById(id);
 
     }
@@ -69,19 +71,27 @@ public class ConferenceRoomReservationServiceImpl implements ConferenceRoomReser
         });
 
     }
-    private ConferenceRoomReservationDto convertToDto(ConferenceRoomReservation conferenceRoomReservation){
+
+    private void validateId(Long id) {
+        if (id > conferenceRoomReservationRepository.findAll().size()) {
+            throw new IllegalArgumentException("Conference room reservation with specified id does not exist");
+        }
+    }
+
+    private ConferenceRoomReservationDto convertToDto(ConferenceRoomReservation conferenceRoomReservation) {
 
         var conferenceRoomReservationDto = new ConferenceRoomReservationDto();
-        BeanUtils.copyProperties(conferenceRoomReservation,conferenceRoomReservationDto);
+        BeanUtils.copyProperties(conferenceRoomReservation, conferenceRoomReservationDto);
         return conferenceRoomReservationDto;
     }
 
-    private ConferenceRoomReservation convertToEntity(ConferenceRoomReservationDto conferenceRoomReservationDto){
+    private ConferenceRoomReservation convertToEntity(ConferenceRoomReservationDto conferenceRoomReservationDto) {
 
         var conferenceRoomReservation = new ConferenceRoomReservation();
-        BeanUtils.copyProperties(conferenceRoomReservationDto,conferenceRoomReservation);
+        BeanUtils.copyProperties(conferenceRoomReservationDto, conferenceRoomReservation);
         return conferenceRoomReservation;
     }
+
     private ConferenceRoomReservation returnUpdate(Long id, ConferenceRoomReservation conferenceRoomReservation) {
         return conferenceRoomReservationRepository.findById(id).map(newConferenceRoomReservation -> {
             newConferenceRoomReservation.setPersonalId(conferenceRoomReservation.getPersonalId());

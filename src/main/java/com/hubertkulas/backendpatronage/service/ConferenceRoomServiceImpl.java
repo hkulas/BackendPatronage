@@ -30,6 +30,7 @@ public class ConferenceRoomServiceImpl implements ConferenceRoomService {
 
     @Override
     public ConferenceRoomDto get(Long id) {
+        validateId(id);
         return convertToDto(conferenceRoomRepository.getOne(id));
     }
 
@@ -42,22 +43,24 @@ public class ConferenceRoomServiceImpl implements ConferenceRoomService {
 
     @Override
     public void update(Long id, ConferenceRoomDto conferenceRoomDto) {
+        validateId(id);
         ConferenceRoom conferenceRoom = convertToEntity(conferenceRoomDto);
         validateRoomNameIdOfRoom(conferenceRoom);
-        returnUpdate(id,conferenceRoom);
-//        returnUpdate2(id,conferenceRoom);
+        returnUpdate(id, conferenceRoom);
+
 
     }
 
     @Override
     public void delete(Long id) {
+        validateId(id);
         conferenceRoomRepository.deleteById(id);
     }
 
-    private void validateRoomNameIdOfRoom(ConferenceRoom conferenceRoom){
+    private void validateRoomNameIdOfRoom(ConferenceRoom conferenceRoom) {
         List<ConferenceRoom> conferenceRooms = conferenceRoomRepository.findAll();
 
-        conferenceRooms.forEach(newConferenceRoom ->{
+        conferenceRooms.forEach(newConferenceRoom -> {
             if (newConferenceRoom.getRoomName().equals(conferenceRoom.getRoomName())) {
                 throw new IllegalArgumentException("'room name' field is not unique");
             }
@@ -67,21 +70,31 @@ public class ConferenceRoomServiceImpl implements ConferenceRoomService {
         });
 
     }
-    private ConferenceRoomDto convertToDto(ConferenceRoom conferenceRoom){
 
+    private void validateId(Long id) {
+        if (id > conferenceRoomRepository.findAll().size()) {
+            throw new IllegalArgumentException("Conference room with specified id does not exist");
+        }
+    }
+
+    private ConferenceRoomDto convertToDto(ConferenceRoom conferenceRoom) {
         var conferenceRoomDto = new ConferenceRoomDto();
-        BeanUtils.copyProperties(conferenceRoom,conferenceRoomDto);
+        BeanUtils.copyProperties(conferenceRoom, conferenceRoomDto);
         return conferenceRoomDto;
     }
 
-    private ConferenceRoom convertToEntity(ConferenceRoomDto conferenceRoomDto){
+    private ConferenceRoom convertToEntity(ConferenceRoomDto conferenceRoomDto) {
 
         var conferenceRoom = new ConferenceRoom();
-        BeanUtils.copyProperties(conferenceRoomDto,conferenceRoom);
+        try {
+            BeanUtils.copyProperties(conferenceRoomDto, conferenceRoom);
+        } catch (Exception ex) {
+            throw new IllegalArgumentException("Objerct with specified id does not exist");
+        }
         return conferenceRoom;
     }
 
-    private ConferenceRoom returnUpdate(Long id, ConferenceRoom conferenceRoom){
+    private ConferenceRoom returnUpdate(Long id, ConferenceRoom conferenceRoom) {
         return conferenceRoomRepository.findById(id).map(newConferenceRoom -> {
             newConferenceRoom.setRoomName(conferenceRoom.getRoomName());
             newConferenceRoom.setIdOfRoom(conferenceRoom.getIdOfRoom());

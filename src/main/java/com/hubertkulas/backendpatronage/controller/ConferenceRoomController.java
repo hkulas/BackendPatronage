@@ -15,27 +15,29 @@ public class ConferenceRoomController {
     @Autowired
     private ConferenceRoomService conferenceRoomService;
 
-    @RequestMapping("/{id}")
+    @GetMapping("/{id}")
     public ConferenceRoomDto get(@PathVariable Long id){
-        return conferenceRoomService.get(id);
+
+            return conferenceRoomService.get(id);
+
 
     }
-    @RequestMapping()
+    @GetMapping()
     public List<ConferenceRoomDto> getAll(){
         return conferenceRoomService.getAll();
     }
 
-    @RequestMapping(method = RequestMethod.POST)
+    @PostMapping
     public void add(@RequestBody ConferenceRoomDto conferenceRoomDto){
         conferenceRoomService.add(conferenceRoomDto);
     }
 
-    @RequestMapping(method = RequestMethod.PUT, value ="/{id}")
+    @PutMapping(value ="/{id}")
     public void update(@RequestBody ConferenceRoomDto conferenceRoomDto, @PathVariable Long id){
         conferenceRoomService.update(id,conferenceRoomDto);
     }
 
-    @RequestMapping(method = RequestMethod.DELETE, value = "/{id}")
+    @DeleteMapping(value = "/{id}")
     public void delete(@PathVariable Long id){
         conferenceRoomService.delete(id);
     }

@@ -14,27 +14,27 @@ public class OrganizationController {
     @Autowired
     private OrganizationService organizationService;
 
-    @RequestMapping("/{id}")
+    @GetMapping("/{id}")
     public OrganizationDto get(@PathVariable Long id){
         return organizationService.get(id);
 
     }
-    @RequestMapping()
+    @GetMapping()
     public List<OrganizationDto> getAll(){
         return organizationService.getAll();
     }
 
-    @RequestMapping(method = RequestMethod.POST)
+    @PostMapping
     public void add(@RequestBody OrganizationDto organizationDto){
         organizationService.add(organizationDto);
     }
 
-    @RequestMapping(method = RequestMethod.PUT, value ="/{id}")
+    @PutMapping(value ="/{id}")
     public void update(@RequestBody OrganizationDto organizationDto, @PathVariable Long id){
         organizationService.update(id,organizationDto);
     }
 
-    @RequestMapping(method = RequestMethod.DELETE, value = "/{id}")
+    @DeleteMapping(value = "/{id}")
     public void delete(@PathVariable Long id){
         organizationService.delete(id);
     }
