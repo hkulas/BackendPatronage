@@ -99,21 +99,5 @@ public class ConferenceRoomServiceImpl implements ConferenceRoomService {
         });
     }
 
-//    private ConferenceRoom returnUpdate2(Long id, ConferenceRoom conferenceRoom){
-//        ConferenceRoom conferenceRoom1 = conferenceRoomRepository.findById(id)
-//                .orElseThrow(() -> new ObjectNotFoundException(id,"There is no such exception"));
-//
-//        conferenceRoom1.setRoomName(conferenceRoom.getRoomName());
-//        conferenceRoom1.setIdOfRoom(conferenceRoom.getIdOfRoom());
-//        conferenceRoom1.setFloor(conferenceRoom.getFloor());
-//        conferenceRoom1.setIsAvailable(conferenceRoom.getIsAvailable());
-//        conferenceRoom1.setStandingPlaces(conferenceRoom.getStandingPlaces());
-//        conferenceRoom1.setSeats(conferenceRoom.getSeats());
-//        conferenceRoom1.setHangingPlaces(conferenceRoom.getSeats());
-//        conferenceRoom1.setConferenceRoomEquipment(conferenceRoom.getConferenceRoomEquipment());
-//
-//        ConferenceRoom updatedConferenceRoom = conferenceRoomRepository.save(conferenceRoom1);
-//        return updatedConferenceRoom;
-//    }
 
 }
