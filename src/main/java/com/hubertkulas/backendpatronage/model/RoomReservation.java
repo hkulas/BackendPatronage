@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class ConferenceRoomReservation {
+public class RoomReservation {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,10 +29,10 @@ public class ConferenceRoomReservation {
     private LocalDateTime endOfReservation;
 
 
-    public ConferenceRoomReservation() {
+    public RoomReservation() {
     }
 
-    public ConferenceRoomReservation(String personalId, LocalDateTime startOfReservation, LocalDateTime endOfReservation) {
+    public RoomReservation(String personalId, LocalDateTime startOfReservation, LocalDateTime endOfReservation) {
         this.personalId = personalId;
         this.startOfReservation = startOfReservation;
         this.endOfReservation = endOfReservation;

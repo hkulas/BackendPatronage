@@ -9,7 +9,7 @@ import javax.persistence.Id;
 import javax.validation.constraints.Pattern;
 
 @Entity
-public class ConferenceRoomEquipment {
+public class RoomEquipment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,22 +26,18 @@ public class ConferenceRoomEquipment {
 
     private ConnectionType connectionType;
 
-    public ConferenceRoomEquipment() {
+    public RoomEquipment() {
     }
 
-    public ConferenceRoomEquipment(String projectorName, boolean isTherePhone, int internalNumber, String externalNumber,ConnectionType connectionType) {
+    public RoomEquipment(String projectorName, boolean isTherePhone,int internalNumber, String externalNumber, ConnectionType connectionType) {
         this.projectorName = projectorName;
         this.isTherePhone = isTherePhone;
         this.connectionType = connectionType;
-
         if (isTherePhone) {
             this.internalNumber = internalNumber;
             this.externalNumber = externalNumber;
         }
     }
-
-
-
 
     public Long getId() {
         return id;
@@ -83,11 +79,11 @@ public class ConferenceRoomEquipment {
         this.externalNumber = externalNumber;
     }
 
-    public ConferenceRoomEquipment.ConnectionType getConnectionType() {
+    public ConnectionType getConnectionType() {
         return connectionType;
     }
 
-    public void setConnectionType(ConferenceRoomEquipment.ConnectionType connectionType) {
+    public void setConnectionType(ConnectionType connectionType) {
         this.connectionType = connectionType;
     }
 

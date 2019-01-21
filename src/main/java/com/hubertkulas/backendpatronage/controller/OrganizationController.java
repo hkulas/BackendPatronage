@@ -1,7 +1,7 @@
 package com.hubertkulas.backendpatronage.controller;
 
 import com.hubertkulas.backendpatronage.dto.OrganizationDto;
-import com.hubertkulas.backendpatronage.service.OrganizationService;
+import com.hubertkulas.backendpatronage.service.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,7 +12,7 @@ import java.util.List;
 public class OrganizationController {
 
     @Autowired
-    private OrganizationService organizationService;
+    private Service<OrganizationDto> organizationService;
 
     @GetMapping("/{id}")
     public OrganizationDto get(@PathVariable Long id){

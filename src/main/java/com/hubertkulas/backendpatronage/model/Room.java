@@ -10,7 +10,7 @@ import javax.validation.constraints.Size;
 @Entity
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Table(name = "conference_room")
-public class ConferenceRoom {
+public class Room {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,12 +36,12 @@ public class ConferenceRoom {
 
 
     @OneToOne(cascade = CascadeType.ALL)
-    private ConferenceRoomEquipment conferenceRoomEquipment;
+    private RoomEquipment roomEquipment;
 
-    public ConferenceRoom() {
+    public Room() {
     }
 
-    public ConferenceRoom(String roomName, String idOfRoom, int floor, boolean isAvailable, int standingPlaces, int seats, int hangingPlaces, ConferenceRoomEquipment conferenceRoomEquipment) {
+    public Room(String roomName,String idOfRoom,int floor, boolean isAvailable, int standingPlaces, int seats, int hangingPlaces, RoomEquipment roomEquipment) {
         this.roomName = roomName;
         this.idOfRoom = idOfRoom;
         this.floor = floor;
@@ -49,9 +49,8 @@ public class ConferenceRoom {
         this.standingPlaces = standingPlaces;
         this.seats = seats;
         this.hangingPlaces = hangingPlaces;
-        this.conferenceRoomEquipment = conferenceRoomEquipment;
+        this.roomEquipment = roomEquipment;
     }
-
 
     public String getRoomName() {
         return roomName;
@@ -117,12 +116,11 @@ public class ConferenceRoom {
         this.id = id;
     }
 
-    public ConferenceRoomEquipment getConferenceRoomEquipment() {
-        return conferenceRoomEquipment;
+    public RoomEquipment getRoomEquipment() {
+        return roomEquipment;
     }
 
-    public void setConferenceRoomEquipment(ConferenceRoomEquipment conferenceRoomEquipment) {
-        this.conferenceRoomEquipment = conferenceRoomEquipment;
+    public void setRoomEquipment(RoomEquipment roomEquipment) {
+        this.roomEquipment = roomEquipment;
     }
-
 }

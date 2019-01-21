@@ -1,6 +1,6 @@
 package com.hubertkulas.backendpatronage.dto;
 
-import com.hubertkulas.backendpatronage.model.ConferenceRoom;
+import com.hubertkulas.backendpatronage.model.Room;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,7 +9,7 @@ public class OrganizationDto {
 
     private Long id;
     private String organizationName;
-    private List<ConferenceRoom> conferenceRooms = new ArrayList<>();
+    private List<Room> rooms = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -27,11 +27,11 @@ public class OrganizationDto {
         this.organizationName = organizationName;
     }
 
-    public List<ConferenceRoom> getConferenceRooms() {
-        return conferenceRooms;
+    public List<Room> getRooms() {
+        return rooms;
     }
 
-    public void setConferenceRooms(List<ConferenceRoom> conferenceRooms) {
-        this.conferenceRooms = conferenceRooms;
+    public void setRooms(List<Room> rooms) {
+        this.rooms = rooms;
     }
 }

@@ -1,8 +1,8 @@
 package com.hubertkulas.backendpatronage.dto;
 
-import com.hubertkulas.backendpatronage.model.ConferenceRoomEquipment;
+import com.hubertkulas.backendpatronage.model.RoomEquipment;
 
-public class ConferenceRoomDto {
+public class RoomDto {
 
     private Long id;
     private String roomName;
@@ -12,7 +12,7 @@ public class ConferenceRoomDto {
     private int standingPlaces;
     private int seats;
     private int hangingPlaces;
-    private ConferenceRoomEquipment conferenceRoomEquipment;
+    private RoomEquipment roomEquipment;
 
     public Long getId() {
         return id;
@@ -78,11 +78,11 @@ public class ConferenceRoomDto {
         this.hangingPlaces = hangingPlaces;
     }
 
-    public ConferenceRoomEquipment getConferenceRoomEquipment() {
-        return conferenceRoomEquipment;
+    public RoomEquipment getRoomEquipment() {
+        return roomEquipment;
     }
 
-    public void setConferenceRoomEquipment(ConferenceRoomEquipment conferenceRoomEquipment) {
-        this.conferenceRoomEquipment = conferenceRoomEquipment;
+    public void setRoomEquipment(RoomEquipment roomEquipment) {
+        this.roomEquipment = roomEquipment;
     }
 }

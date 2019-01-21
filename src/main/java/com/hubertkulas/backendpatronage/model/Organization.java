@@ -24,14 +24,14 @@ public class Organization {
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "conference_room_id")
-    private List<ConferenceRoom> conferenceRooms = new ArrayList<>();
+    private List<Room> rooms = new ArrayList<>();
 
     public Organization() {
     }
 
-    public Organization(String organizationName,List<ConferenceRoom> conferenceRooms) {
+    public Organization(String organizationName,List<Room> rooms) {
         this.organizationName = organizationName;
-        this.conferenceRooms = conferenceRooms;
+        this.rooms = rooms;
     }
 
     public Organization(String organizationName) {
@@ -54,11 +54,11 @@ public class Organization {
         this.organizationName = organizationName;
     }
 
-    public List<ConferenceRoom> getConferenceRooms() {
-        return conferenceRooms;
+    public List<Room> getRooms() {
+        return rooms;
     }
 
-    public void setConferenceRooms(List<ConferenceRoom> conferenceRooms) {
-        this.conferenceRooms = conferenceRooms;
+    public void setRooms(List<Room> rooms) {
+        this.rooms = rooms;
     }
 }
