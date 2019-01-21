@@ -19,28 +19,29 @@ public class RoomReservationController {
     private RoomReservationRepository roomReservationRepository;
 
     @GetMapping("/{id}")
-    public RoomReservationDto get(@PathVariable Long id){
+    public RoomReservationDto get(@PathVariable Long id) {
         return roomReservationService.get(id);
 
     }
+
     @GetMapping()
-    public List<RoomReservationDto> getAll(){
+    public List<RoomReservationDto> getAll() {
         return roomReservationService.getAll();
     }
 
     @PostMapping
-    public void add(@RequestBody RoomReservationDto roomReservationDto){
-        roomReservationService.add(roomReservationDto);
+    public RoomReservationDto add(@RequestBody RoomReservationDto roomReservationDto) {
+        return roomReservationService.add(roomReservationDto);
     }
 
-    @PutMapping(value ="/{id}")
-    public void update(@RequestBody RoomReservationDto roomReservationDto, @PathVariable Long id){
-      roomReservationService.update(id, roomReservationDto);
+    @PutMapping(value = "/{id}")
+    public RoomReservationDto update(@RequestBody RoomReservationDto roomReservationDto, @PathVariable Long id) {
+        return roomReservationService.update(id, roomReservationDto);
 
     }
 
     @DeleteMapping(value = "/{id}")
-    public void delete(@PathVariable Long id){
+    public void delete(@PathVariable Long id) {
         roomReservationService.delete(id);
     }
 

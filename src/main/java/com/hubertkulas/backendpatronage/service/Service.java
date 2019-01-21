@@ -7,9 +7,9 @@ public interface Service<T> {
 
     T get(Long id);
 
-    void add(T dtoModel);
+    T add(T dtoModel);
 
-    void update(Long id, T dtoModel);
+    T update(Long id, T dtoModel);
 
     void delete(Long id);
 }

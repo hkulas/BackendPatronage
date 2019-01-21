@@ -16,29 +16,30 @@ public class RoomController {
     private Service<RoomDto> conferenceRoomService;
 
     @GetMapping("/{id}")
-    public RoomDto get(@PathVariable Long id){
+    public RoomDto get(@PathVariable Long id) {
 
-            return conferenceRoomService.get(id);
+        return conferenceRoomService.get(id);
 
 
     }
+
     @GetMapping()
-    public List<RoomDto> getAll(){
+    public List<RoomDto> getAll() {
         return conferenceRoomService.getAll();
     }
 
     @PostMapping
-    public void add(@RequestBody RoomDto roomDto){
-        conferenceRoomService.add(roomDto);
+    public RoomDto add(@RequestBody RoomDto roomDto) {
+        return conferenceRoomService.add(roomDto);
     }
 
-    @PutMapping(value ="/{id}")
-    public void update(@RequestBody RoomDto roomDto, @PathVariable Long id){
-        conferenceRoomService.update(id, roomDto);
+    @PutMapping(value = "/{id}")
+    public RoomDto update(@RequestBody RoomDto roomDto, @PathVariable Long id) {
+        return conferenceRoomService.update(id, roomDto);
     }
 
     @DeleteMapping(value = "/{id}")
-    public void delete(@PathVariable Long id){
+    public void delete(@PathVariable Long id) {
         conferenceRoomService.delete(id);
     }
 }

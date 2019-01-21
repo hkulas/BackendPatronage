@@ -30,30 +30,44 @@ public class RoomService implements com.hubertkulas.backendpatronage.service.Ser
 
     @Override
     public RoomDto get(Long id) {
-        validateId(id);
+
         return convertToDto(roomRepository.getOne(id));
     }
 
     @Override
-    public void add(RoomDto roomDto) {
+    public RoomDto add(RoomDto roomDto) {
         Room room = convertToEntity(roomDto);
         validateRoomNameIdOfRoom(room);
-        roomRepository.save(room);
+        room = roomRepository.save(room);
+        return convertToDto(room);
     }
 
     @Override
-    public void update(Long id, RoomDto roomDto) {
-        validateId(id);
+    public RoomDto update(Long id, RoomDto roomDto) {
         Room room = convertToEntity(roomDto);
         validateRoomNameIdOfRoom(room);
-        returnUpdate(id, room);
-
+        return roomRepository.findById(id).map(newRoom -> {
+            newRoom.setRoomName(room.getRoomName());
+            newRoom.setIdOfRoom(room.getIdOfRoom());
+            newRoom.setFloor(room.getFloor());
+            newRoom.setIsAvailable(room.getIsAvailable());
+            newRoom.setStandingPlaces(room.getStandingPlaces());
+            newRoom.setSeats(room.getSeats());
+            newRoom.setHangingPlaces(room.getSeats());
+            newRoom.setRoomEquipment(room.getRoomEquipment());
+            newRoom = roomRepository.save(newRoom);
+            return convertToDto(newRoom);
+        }).orElseGet(() -> {
+            room.setId(id);
+            Room room1 = roomRepository.save(room);
+            return convertToDto(room1);
+        });
 
     }
 
     @Override
     public void delete(Long id) {
-        validateId(id);
+
         roomRepository.deleteById(id);
     }
 
@@ -71,11 +85,6 @@ public class RoomService implements com.hubertkulas.backendpatronage.service.Ser
 
     }
 
-    private void validateId(Long id) {
-        if (id > roomRepository.findAll().size()) {
-            throw new IllegalArgumentException("Conference room with specified id does not exist");
-        }
-    }
 
     private RoomDto convertToDto(Room room) {
         var conferenceRoomDto = new RoomDto();
@@ -92,24 +101,6 @@ public class RoomService implements com.hubertkulas.backendpatronage.service.Ser
             throw new IllegalArgumentException("Objerct with specified id does not exist");
         }
         return conferenceRoom;
-    }
-
-    private Room returnUpdate(Long id, Room room) {
-        return roomRepository.findById(id).map(newRoom -> {
-            newRoom.setRoomName(room.getRoomName());
-            newRoom.setIdOfRoom(room.getIdOfRoom());
-            newRoom.setFloor(room.getFloor());
-            newRoom.setIsAvailable(room.getIsAvailable());
-            newRoom.setStandingPlaces(room.getStandingPlaces());
-            newRoom.setSeats(room.getSeats());
-            newRoom.setHangingPlaces(room.getSeats());
-//            newRoom.setRoomEquipment(room.getRoomEquipment());
-
-            return roomRepository.save(newRoom);
-        }).orElseGet(() -> {
-            room.setId(id);
-            return roomRepository.save(room);
-        });
     }
 
 

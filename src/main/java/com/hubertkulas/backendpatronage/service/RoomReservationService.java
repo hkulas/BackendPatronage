@@ -33,30 +33,38 @@ public class RoomReservationService implements com.hubertkulas.backendpatronage.
 
     @Override
     public RoomReservationDto get(Long id) {
-        validateId(id);
         return convertToDto(roomReservationRepository.getOne(id));
     }
 
     @Override
-    public void add(RoomReservationDto roomReservationDto) {
+    public RoomReservationDto add(RoomReservationDto roomReservationDto) {
         RoomReservation roomReservation = convertToEntity(roomReservationDto);
         validatePersonalId(roomReservation);
-        roomReservationRepository.save(roomReservation);
-
+        roomReservation = roomReservationRepository.save(roomReservation);
+        return convertToDto(roomReservation);
     }
 
+
     @Override
-    public void update(Long id, RoomReservationDto roomReservationDto) {
-        validateId(id);
+    public RoomReservationDto update(Long id, RoomReservationDto roomReservationDto) {
         RoomReservation roomReservation = convertToEntity(roomReservationDto);
         validatePersonalId(roomReservation);
-        returnUpdate(id, roomReservation);
-
+        return roomReservationRepository.findById(id).map(newRoomReservation -> {
+            newRoomReservation.setPersonalId(roomReservation.getPersonalId());
+            newRoomReservation.setStartOfReservation(roomReservation.getStartOfReservation());
+            newRoomReservation.setEndOfReservation(roomReservation.getEndOfReservation());
+            newRoomReservation = roomReservationRepository.save(newRoomReservation);
+            return convertToDto(newRoomReservation);
+        }).orElseGet(() -> {
+            roomReservation.setId(id);
+            RoomReservation roomReservation1 = roomReservationRepository.save(roomReservation);
+            return convertToDto(roomReservation1);
+        });
     }
 
     @Override
     public void delete(Long id) {
-        validateId(id);
+
         roomReservationRepository.deleteById(id);
 
     }
@@ -72,11 +80,6 @@ public class RoomReservationService implements com.hubertkulas.backendpatronage.
 
     }
 
-    private void validateId(Long id) {
-        if (id > roomReservationRepository.findAll().size()) {
-            throw new IllegalArgumentException("Conference room reservation with specified id does not exist");
-        }
-    }
 
     private RoomReservationDto convertToDto(RoomReservation roomReservation) {
 
@@ -90,18 +93,6 @@ public class RoomReservationService implements com.hubertkulas.backendpatronage.
         var conferenceRoomReservation = new RoomReservation();
         BeanUtils.copyProperties(roomReservationDto, conferenceRoomReservation);
         return conferenceRoomReservation;
-    }
-
-    private RoomReservation returnUpdate(Long id, RoomReservation roomReservation) {
-        return roomReservationRepository.findById(id).map(newRoomReservation -> {
-            newRoomReservation.setPersonalId(roomReservation.getPersonalId());
-            newRoomReservation.setStartOfReservation(roomReservation.getStartOfReservation());
-            newRoomReservation.setEndOfReservation(roomReservation.getEndOfReservation());
-            return roomReservationRepository.save(newRoomReservation);
-        }).orElseGet(() -> {
-            roomReservation.setId(id);
-            return roomReservationRepository.save(roomReservation);
-        });
     }
 
 
