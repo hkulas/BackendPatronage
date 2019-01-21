@@ -29,7 +29,7 @@ public class Room {
     @Range(min = 0, max = 10, message = "Minimal value of floor should be 0 and maximum value should be 10")
     private int floor;
 
-    private boolean isAvailable;
+    private boolean available;
     private int standingPlaces;
     private int seats;
     private int hangingPlaces;
@@ -41,11 +41,11 @@ public class Room {
     public Room() {
     }
 
-    public Room(String roomName,String idOfRoom,int floor, boolean isAvailable, int standingPlaces, int seats, int hangingPlaces, RoomEquipment roomEquipment) {
+    public Room(String roomName, String idOfRoom,int floor, boolean available, int standingPlaces, int seats, int hangingPlaces, RoomEquipment roomEquipment) {
         this.roomName = roomName;
         this.idOfRoom = idOfRoom;
         this.floor = floor;
-        this.isAvailable = isAvailable;
+        this.available = available;
         this.standingPlaces = standingPlaces;
         this.seats = seats;
         this.hangingPlaces = hangingPlaces;
@@ -76,12 +76,12 @@ public class Room {
         this.floor = floor;
     }
 
-    public boolean getIsAvailable() {
-        return isAvailable;
+    public boolean isAvailable() {
+        return available;
     }
 
-    public void setIsAvailable(boolean isAvailable) {
-        this.isAvailable = isAvailable;
+    public void setAvailable(boolean available) {
+        this.available = available;
     }
 
     public int getStandingPlaces() {

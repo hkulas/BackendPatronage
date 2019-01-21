@@ -8,7 +8,7 @@ public class RoomDto {
     private String roomName;
     private String idOfRoom;
     private int floor;
-    private boolean isAvailable;
+    private boolean available;
     private int standingPlaces;
     private int seats;
     private int hangingPlaces;
@@ -47,11 +47,11 @@ public class RoomDto {
     }
 
     public boolean isAvailable() {
-        return isAvailable;
+        return available;
     }
 
     public void setAvailable(boolean available) {
-        isAvailable = available;
+        this.available = available;
     }
 
     public int getStandingPlaces() {

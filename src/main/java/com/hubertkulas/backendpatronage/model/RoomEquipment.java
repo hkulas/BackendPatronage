@@ -29,7 +29,7 @@ public class RoomEquipment {
     public RoomEquipment() {
     }
 
-    public RoomEquipment(String projectorName, boolean isTherePhone,int internalNumber, String externalNumber, ConnectionType connectionType) {
+    public RoomEquipment(String projectorName, boolean isTherePhone, int internalNumber, String externalNumber, ConnectionType connectionType) {
         this.projectorName = projectorName;
         this.isTherePhone = isTherePhone;
         this.connectionType = connectionType;

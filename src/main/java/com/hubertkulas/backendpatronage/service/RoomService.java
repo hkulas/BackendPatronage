@@ -50,7 +50,7 @@ public class RoomService implements com.hubertkulas.backendpatronage.service.Ser
             newRoom.setRoomName(room.getRoomName());
             newRoom.setIdOfRoom(room.getIdOfRoom());
             newRoom.setFloor(room.getFloor());
-            newRoom.setIsAvailable(room.getIsAvailable());
+            newRoom.setAvailable(room.isAvailable());
             newRoom.setStandingPlaces(room.getStandingPlaces());
             newRoom.setSeats(room.getSeats());
             newRoom.setHangingPlaces(room.getSeats());
