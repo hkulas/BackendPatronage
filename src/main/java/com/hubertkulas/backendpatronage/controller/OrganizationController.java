@@ -9,7 +9,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/Organizations")
-
 public class OrganizationController {
 
     @Autowired

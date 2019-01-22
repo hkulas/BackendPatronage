@@ -27,12 +27,12 @@ public class Room {
     private String idOfRoom;
 
     @Range(min = 0, max = 10, message = "Minimal value of floor should be 0 and maximum value should be 10")
-    private int floor;
+    private Integer floor;
 
-    private boolean available;
-    private int standingPlaces;
-    private int seats;
-    private int hangingPlaces;
+    private Boolean available;
+    private Integer standingPlaces;
+    private Integer seats;
+    private Integer hangingPlaces;
 
 
     @OneToOne(cascade = CascadeType.ALL)
@@ -41,7 +41,7 @@ public class Room {
     public Room() {
     }
 
-    public Room(String roomName, String idOfRoom,int floor, boolean available, int standingPlaces, int seats, int hangingPlaces, RoomEquipment roomEquipment) {
+    public Room(String roomName,String idOfRoom,Integer floor, Boolean available, Integer standingPlaces, Integer seats, Integer hangingPlaces, RoomEquipment roomEquipment) {
         this.roomName = roomName;
         this.idOfRoom = idOfRoom;
         this.floor = floor;
@@ -50,6 +50,14 @@ public class Room {
         this.seats = seats;
         this.hangingPlaces = hangingPlaces;
         this.roomEquipment = roomEquipment;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getRoomName() {
@@ -68,52 +76,44 @@ public class Room {
         this.idOfRoom = idOfRoom;
     }
 
-    public int getFloor() {
+    public Integer getFloor() {
         return floor;
     }
 
-    public void setFloor(int floor) {
+    public void setFloor(Integer floor) {
         this.floor = floor;
     }
 
-    public boolean isAvailable() {
+    public Boolean getAvailable() {
         return available;
     }
 
-    public void setAvailable(boolean available) {
+    public void setAvailable(Boolean available) {
         this.available = available;
     }
 
-    public int getStandingPlaces() {
+    public Integer getStandingPlaces() {
         return standingPlaces;
     }
 
-    public void setStandingPlaces(int standingPlaces) {
+    public void setStandingPlaces(Integer standingPlaces) {
         this.standingPlaces = standingPlaces;
     }
 
-    public int getSeats() {
+    public Integer getSeats() {
         return seats;
     }
 
-    public void setSeats(int seats) {
+    public void setSeats(Integer seats) {
         this.seats = seats;
     }
 
-    public int getHangingPlaces() {
+    public Integer getHangingPlaces() {
         return hangingPlaces;
     }
 
-    public void setHangingPlaces(int hangingPlaces) {
+    public void setHangingPlaces(Integer hangingPlaces) {
         this.hangingPlaces = hangingPlaces;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public RoomEquipment getRoomEquipment() {

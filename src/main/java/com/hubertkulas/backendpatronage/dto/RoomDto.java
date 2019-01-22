@@ -1,17 +1,26 @@
 package com.hubertkulas.backendpatronage.dto;
 
 import com.hubertkulas.backendpatronage.model.RoomEquipment;
+import org.hibernate.validator.constraints.Range;
+
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 public class RoomDto {
 
     private Long id;
+    @Size(min = 2, max = 20, message = "The size of 'room name' should be between 2 and 20")
+    @NotBlank(message = "'room name' should not be blank")
     private String roomName;
+    @Size(min = 2, max = 20, message = "The size of 'id of room' should be between 2 and 20")
+    @NotBlank(message = "'id of room' should not be blank")
     private String idOfRoom;
-    private int floor;
-    private boolean available;
-    private int standingPlaces;
-    private int seats;
-    private int hangingPlaces;
+    @Range(min = 0, max = 10, message = "Minimal value of floor should be 0 and maximum value should be 10")
+    private Integer floor;
+    private Boolean available;
+    private Integer standingPlaces;
+    private Integer seats;
+    private Integer hangingPlaces;
     private RoomEquipment roomEquipment;
 
     public Long getId() {
@@ -38,43 +47,43 @@ public class RoomDto {
         this.idOfRoom = idOfRoom;
     }
 
-    public int getFloor() {
+    public Integer getFloor() {
         return floor;
     }
 
-    public void setFloor(int floor) {
+    public void setFloor(Integer floor) {
         this.floor = floor;
     }
 
-    public boolean isAvailable() {
+    public Boolean getAvailable() {
         return available;
     }
 
-    public void setAvailable(boolean available) {
+    public void setAvailable(Boolean available) {
         this.available = available;
     }
 
-    public int getStandingPlaces() {
+    public Integer getStandingPlaces() {
         return standingPlaces;
     }
 
-    public void setStandingPlaces(int standingPlaces) {
+    public void setStandingPlaces(Integer standingPlaces) {
         this.standingPlaces = standingPlaces;
     }
 
-    public int getSeats() {
+    public Integer getSeats() {
         return seats;
     }
 
-    public void setSeats(int seats) {
+    public void setSeats(Integer seats) {
         this.seats = seats;
     }
 
-    public int getHangingPlaces() {
+    public Integer getHangingPlaces() {
         return hangingPlaces;
     }
 
-    public void setHangingPlaces(int hangingPlaces) {
+    public void setHangingPlaces(Integer hangingPlaces) {
         this.hangingPlaces = hangingPlaces;
     }
 

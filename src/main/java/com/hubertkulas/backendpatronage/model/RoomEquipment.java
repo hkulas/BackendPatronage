@@ -19,7 +19,7 @@ public class RoomEquipment {
     private boolean isTherePhone;
 
     @Range(min = 0, max = 100, message = "Minimal value of internal number should be 0 and maximum value should be 100")
-    private int internalNumber ;
+    private Integer internalNumber ;
 
     @Pattern(regexp = "(^\\+)[0-9]{2}\\s[0-9]{9}", message = "You should put your number in correct format like this: +12 123456789")
     private String externalNumber;
@@ -29,7 +29,7 @@ public class RoomEquipment {
     public RoomEquipment() {
     }
 
-    public RoomEquipment(String projectorName, boolean isTherePhone, int internalNumber, String externalNumber, ConnectionType connectionType) {
+    public RoomEquipment(String projectorName, boolean isTherePhone, Integer internalNumber,String externalNumber, ConnectionType connectionType) {
         this.projectorName = projectorName;
         this.isTherePhone = isTherePhone;
         this.connectionType = connectionType;
@@ -63,11 +63,11 @@ public class RoomEquipment {
         isTherePhone = therePhone;
     }
 
-    public int getInternalNumber() {
+    public Integer getInternalNumber() {
         return internalNumber;
     }
 
-    public void setInternalNumber(int internalNumber) {
+    public void setInternalNumber(Integer internalNumber) {
         this.internalNumber = internalNumber;
     }
 
