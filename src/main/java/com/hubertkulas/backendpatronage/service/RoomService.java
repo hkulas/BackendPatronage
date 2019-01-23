@@ -87,20 +87,16 @@ public class RoomService implements com.hubertkulas.backendpatronage.service.Ser
 
 
     private RoomDto convertToDto(Room room) {
-        var conferenceRoomDto = new RoomDto();
-        BeanUtils.copyProperties(room, conferenceRoomDto);
-        return conferenceRoomDto;
+        var roomDto = new RoomDto();
+        BeanUtils.copyProperties(room, roomDto);
+        return roomDto;
     }
 
     private Room convertToEntity(RoomDto roomDto) {
 
-        var conferenceRoom = new Room();
-        try {
-            BeanUtils.copyProperties(roomDto, conferenceRoom);
-        } catch (Exception ex) {
-            throw new IllegalArgumentException("Objerct with specified id does not exist");
-        }
-        return conferenceRoom;
+        var room = new Room();
+        BeanUtils.copyProperties(roomDto, room);
+        return room;
     }
 
 

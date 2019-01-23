@@ -81,16 +81,16 @@ public class RoomReservationService implements com.hubertkulas.backendpatronage.
     }
     private RoomReservationDto convertToDto(RoomReservation roomReservation) {
 
-        var conferenceRoomReservationDto = new RoomReservationDto();
-        BeanUtils.copyProperties(roomReservation, conferenceRoomReservationDto);
-        return conferenceRoomReservationDto;
+        var roomReservationDto = new RoomReservationDto();
+        BeanUtils.copyProperties(roomReservation, roomReservationDto);
+        return roomReservationDto;
     }
 
     private RoomReservation convertToEntity(RoomReservationDto roomReservationDto) {
 
-        var conferenceRoomReservation = new RoomReservation();
-        BeanUtils.copyProperties(roomReservationDto, conferenceRoomReservation);
-        return conferenceRoomReservation;
+        var roomReservation = new RoomReservation();
+        BeanUtils.copyProperties(roomReservationDto, roomReservation);
+        return roomReservation;
     }
 
 
