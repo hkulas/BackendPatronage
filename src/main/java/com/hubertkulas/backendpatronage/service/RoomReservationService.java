@@ -79,8 +79,6 @@ public class RoomReservationService implements com.hubertkulas.backendpatronage.
         });
 
     }
-
-
     private RoomReservationDto convertToDto(RoomReservation roomReservation) {
 
         var conferenceRoomReservationDto = new RoomReservationDto();
