@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/ConferenceRoomReservations")
+@RequestMapping("/reservations")
 public class RoomReservationController {
 
     @Autowired
@@ -29,7 +29,7 @@ public class RoomReservationController {
         return roomReservationService.getAll();
     }
 
-    @PostMapping
+    @PostMapping()
     public RoomReservationDto add(@RequestBody RoomReservationDto roomReservationDto) {
         return roomReservationService.add(roomReservationDto);
     }
