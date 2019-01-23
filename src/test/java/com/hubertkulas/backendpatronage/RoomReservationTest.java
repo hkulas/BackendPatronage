@@ -15,21 +15,23 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
-public class RoomReservationRepositoryIntegrationTest {
+public class RoomReservationTest {
 
     @Autowired
     private RoomReservationRepository roomReservationRepository;
 
     @Test
-    public void returnConferenceRoomReservationMock_whenGetOneIsCalled() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-        RoomReservation roomReservationMock = new RoomReservation("23", LocalDateTime.parse("1996-12-14 20:50", formatter),
-                LocalDateTime.parse("1996-12-14 21:50", formatter));
-        roomReservationRepository.save(roomReservationMock);
-        RoomReservation roomReservationCall = roomReservationRepository.getOne(1l);
-        assertThat(roomReservationCall)
-                .isEqualTo(roomReservationMock);
+    public void returnRoomReservationSample_whenGetOneIsCalled() {
+        var reservationRoomSample = roomReservationRepository.save(createSampleRoom());
+        var reservationRoomResult = roomReservationRepository.getOne(1l);
+        assertThat(reservationRoomResult)
+                .isEqualTo(reservationRoomSample);
     }
 
-
+    private RoomReservation createSampleRoom() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        var reservationRoom = new RoomReservation("23", LocalDateTime.parse("1996-12-14 20:50", formatter),
+                LocalDateTime.parse("1996-12-14 21:50", formatter));
+        return reservationRoom;
+    }
 }
