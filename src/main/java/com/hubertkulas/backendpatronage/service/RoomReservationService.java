@@ -70,13 +70,10 @@ public class RoomReservationService implements com.hubertkulas.backendpatronage.
     }
 
     private void validatePersonalId(RoomReservation roomReservation) {
-        List<RoomReservation> roomReservations = roomReservationRepository.findAll();
-
-        roomReservations.forEach(newRoomReservation -> {
-            if (newRoomReservation.getPersonalId().equals(roomReservation.getPersonalId())) {
-                throw new IllegalArgumentException("'personal id' field is not unique");
-            }
-        });
+        var roomReservations = roomReservationRepository.findByPersonalId(roomReservation.getPersonalId());
+        if(roomReservations.size()!=0){
+            throw new IllegalArgumentException("'personal id' field is not unique");
+        }
 
     }
 

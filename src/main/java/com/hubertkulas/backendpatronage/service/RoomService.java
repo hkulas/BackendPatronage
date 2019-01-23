@@ -72,16 +72,14 @@ public class RoomService implements com.hubertkulas.backendpatronage.service.Ser
     }
 
     private void validateRoomNameIdOfRoom(Room room) {
-        List<Room> rooms = roomRepository.findAll();
-
-        rooms.forEach(newRoom -> {
-            if (newRoom.getRoomName().equals(room.getRoomName())) {
-                throw new IllegalArgumentException("'room name' field is not unique");
-            }
-            if (newRoom.getIdOfRoom().equals(room.getIdOfRoom())) {
-                throw new IllegalArgumentException("'id of room' field is not unique");
-            }
-        });
+        var roomNames = roomRepository.findByRoomName(room.getRoomName());
+        var roomIds = roomRepository.findByIdOfRoom(room.getIdOfRoom());
+        if(roomNames.size()!=0){
+            throw new IllegalArgumentException("'organization name' field is not unique");
+        }
+        if(roomIds.size()!=0){
+            throw new IllegalArgumentException("'id of room' field is not unique");
+        }
 
     }
 

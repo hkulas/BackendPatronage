@@ -66,12 +66,10 @@ public class OrganizationService implements com.hubertkulas.backendpatronage.ser
     }
 
     private void validateOrganizationName(Organization organization) {
-        List<Organization> organizations = organizationRepository.findAll();
-        organizations.forEach(newOrganization -> {
-            if (newOrganization.getOrganizationName().equals(organization.getOrganizationName())) {
-                throw new IllegalArgumentException("'organization name' field is not unique");
-            }
-        });
+        var organizations = organizationRepository.findByOrganizationName(organization.getOrganizationName());
+        if(organizations.size()!=0){
+            throw new IllegalArgumentException("'organization name' field is not unique");
+        }
     }
 
     private OrganizationDto convertToDto(Organization organization) {
