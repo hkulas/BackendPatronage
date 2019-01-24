@@ -12,8 +12,12 @@ import java.util.List;
 @RequestMapping("/reservations")
 public class RoomReservationController {
 
-    @Autowired
-    private Service<RoomReservationDto> roomReservationService;
+
+    private final Service<RoomReservationDto> roomReservationService;
+
+    public RoomReservationController(Service<RoomReservationDto> roomReservationService) {
+        this.roomReservationService = roomReservationService;
+    }
 
     @Autowired
     private RoomReservationRepository roomReservationRepository;

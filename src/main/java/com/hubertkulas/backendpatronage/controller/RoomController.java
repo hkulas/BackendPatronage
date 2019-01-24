@@ -2,7 +2,6 @@ package com.hubertkulas.backendpatronage.controller;
 
 import com.hubertkulas.backendpatronage.dto.RoomDto;
 import com.hubertkulas.backendpatronage.service.Service;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,8 +11,12 @@ import java.util.List;
 public class RoomController {
 
 
-    @Autowired
-    private Service<RoomDto> conferenceRoomService;
+
+    private final Service<RoomDto> conferenceRoomService;
+
+    public RoomController(Service<RoomDto> conferenceRoomService) {
+        this.conferenceRoomService = conferenceRoomService;
+    }
 
     @GetMapping("/{id}")
     public RoomDto get(@PathVariable Long id) {
