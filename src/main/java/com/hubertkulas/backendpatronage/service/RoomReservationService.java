@@ -7,6 +7,8 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,17 +40,20 @@ public class RoomReservationService implements com.hubertkulas.backendpatronage.
 
     @Override
     public RoomReservationDto add(RoomReservationDto roomReservationDto) {
-        RoomReservation roomReservation = convertToEntity(roomReservationDto);
-        validatePersonalId(roomReservation);
+        validationMethods(roomReservationDto);
+        var roomReservation = convertToEntity(roomReservationDto);
+
         roomReservation = roomReservationRepository.save(roomReservation);
         return convertToDto(roomReservation);
     }
 
 
+
     @Override
     public RoomReservationDto update(Long id, RoomReservationDto roomReservationDto) {
-        RoomReservation roomReservation = convertToEntity(roomReservationDto);
-        validatePersonalId(roomReservation);
+        validationMethods(roomReservationDto);
+        var roomReservation = convertToEntity(roomReservationDto);
+
         return roomReservationRepository.findById(id).map(newRoomReservation -> {
             newRoomReservation.setPersonalId(roomReservation.getPersonalId());
             newRoomReservation.setStartOfReservation(roomReservation.getStartOfReservation());
@@ -68,6 +73,15 @@ public class RoomReservationService implements com.hubertkulas.backendpatronage.
         roomReservationRepository.deleteById(id);
 
     }
+    private void validationMethods(RoomReservationDto roomReservationDto) {
+        var roomReservation = convertToEntity(roomReservationDto);
+
+        validatePersonalId(roomReservation);
+        reservationIsToShortOrToLong(roomReservation.getStartOfReservation(),roomReservation.getEndOfReservation());
+        beginIsBeforeEnd(roomReservation.getStartOfReservation(),roomReservation.getEndOfReservation());
+        isReserved(roomReservation);
+    }
+
 
     private void validatePersonalId(RoomReservation roomReservation) {
         var roomReservations = roomReservationRepository.findByPersonalId(roomReservation.getPersonalId());
@@ -75,6 +89,30 @@ public class RoomReservationService implements com.hubertkulas.backendpatronage.
             throw new IllegalArgumentException("'personal id' field is not unique");
         }
 
+    }
+    private void beginIsBeforeEnd(LocalDateTime begin, LocalDateTime end){
+
+        var seconds = Duration.between(begin, end).getSeconds();
+
+        if(seconds <=0){
+            throw new IllegalArgumentException("The end date you entered is before the start date");
+        }
+    }
+    private void isReserved(RoomReservation roomReservation) {
+        List<RoomReservation> roomReservations = roomReservationRepository.findAllByStartOfReservationLessThanEqualAndEndOfReservationGreaterThanEqual(roomReservation.getEndOfReservation(),roomReservation.getStartOfReservation());
+        if(roomReservations.size()!=0){
+            throw new IllegalArgumentException("The chosen date is already taken");
+        }
+    }
+
+    private void reservationIsToShortOrToLong(LocalDateTime begin, LocalDateTime end){
+        var seconds = Duration.between(begin, end).getSeconds();
+        if(seconds >=7200){
+            throw new IllegalArgumentException("Your reservation is too long. It should be less than two hours");
+        }
+        else if(seconds <= 300){
+            throw new IllegalArgumentException("Your reservation is too short. It should be more than five minutes");
+        }
     }
 
     private RoomReservationDto convertToDto(RoomReservation roomReservation) {
@@ -90,6 +128,7 @@ public class RoomReservationService implements com.hubertkulas.backendpatronage.
         BeanUtils.copyProperties(roomReservationDto, roomReservation);
         return roomReservation;
     }
+
 
 
 }
