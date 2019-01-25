@@ -1,6 +1,7 @@
 package com.hubertkulas.backendpatronage.service;
 
 import com.hubertkulas.backendpatronage.dto.RoomReservationDto;
+import com.hubertkulas.backendpatronage.exception.RoomIsAlreadyReservedException;
 import com.hubertkulas.backendpatronage.model.RoomReservation;
 import com.hubertkulas.backendpatronage.repository.RoomReservationRepository;
 import org.springframework.beans.BeanUtils;
@@ -101,7 +102,7 @@ public class RoomReservationService implements com.hubertkulas.backendpatronage.
     private void isReserved(RoomReservation roomReservation) {
         List<RoomReservation> roomReservations = roomReservationRepository.findAllByStartOfReservationLessThanEqualAndEndOfReservationGreaterThanEqual(roomReservation.getEndOfReservation(),roomReservation.getStartOfReservation());
         if(roomReservations.size()!=0){
-            throw new IllegalArgumentException("The chosen date is already taken");
+            throw new RoomIsAlreadyReservedException();
         }
     }
 
