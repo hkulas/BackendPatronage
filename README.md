@@ -18,9 +18,9 @@ gradlew bootRun
 
 ## You can send requests at given addresses
 There are three specified addresses:
-- ConferenceRooms
-- ConferenceRoomReservations
-- Organizations
+- rooms
+- roomReservations
+- organizations
 
 * GET
   ```
@@ -28,7 +28,7 @@ There are three specified addresses:
   ```
   example:
   ```
-  http://localhost:8080/Organizations
+  http://localhost:8080/organizations
   ```
 
 * POST
@@ -40,7 +40,7 @@ There are three specified addresses:
   ```
   example:
   ```
-  http://localhost:8080/ConferenceRooms/2
+  http://localhost:8080/organizations/2
   ```
 * DELETE
   ```
@@ -48,53 +48,21 @@ There are three specified addresses:
   ```
   example:
   ```
-  http://localhost:8080/ConferenceRoomReservations/2
+  http://localhost:8080/organizations/2
   ```
 
 *LEGEND:*<br/>
 {id} - You should specify which id you want here for example:<br/>
-  http://localhost:8080/Organizations/3<br/>
+  http://localhost:8080/organizations/3<br/>
   In the link above 3 is {id}.
 
 {address} - You should choose one of the specified addresses<br/> 
 (ConferenceRooms, ConferenceRoomReservations, Organizations).
 
 ## Sending requests with cURL
-There are 4 embedded organizations, conference rooms and conference room reservations.
 In this project we use json format to get our data.
 If you want to get response after making changes with POST, PUT, DELETE use GET request.
-### 3.1. GET
-
-```
-curl {your address}
-```
-example:
-```
-curl http://localhost:8080/Organizations
-```
-response:
-```
-[
-  {"id":1,"organizationName":"IBM"},
-  {"id":2,"organizationName":"Google"},
-  {"id":3,"organizationName":"Red Hat"},
-  {"id":4,"organizationName":"Oracle"}
-]
- ```
-###  3.1.1 GET with specified id
-
-```
-curl {your address}
-```
-example:
-```
-curl http://localhost:8080/Organizations/2
-```
-response:
-```
-{"id":2,"organizationName":"Google"}
-```
-### 3.2. POST
+### 3.1. POST
 
 You have to specify your header if you want to use json, because default header
 to all POST requests is: Content-Type: application/x-www-form-urlencoded.
@@ -106,20 +74,50 @@ curl -d "{json}" -H "Content-Type: {type of your format}" {your address}
 ```
 example:
 ```
-curl -d "{\"organizationName\":\"Apple\"}" -H "Content-Type: application/json"
-http://localhost:8080/Organizations
+curl -d "{\"organizationName\": \"IBM\",\"rooms\":[{\"roomName\": \"BlueRoom\", \"idOfRoom\": \"22\",\"floor\": 1,\"available\": true,\"standingPlaces\": 20,\"seats\": 30,\"hangingPlaces\": 0,\"roomEquipment\": {\"projectorName\": \"Alfa\",\"internalNumber\": 56,\"externalNumber\": \"+12 123456789\",\"connectionType\": \"Bluetooth\",\"therePhone\": true}"}"]}" -H "Content-Type: application/json" http://localhost:8080/organizations
 ```
-*GET request*
+response:
+```
+{"id":1,"organizationName":"IBM","rooms[
+{"id":1,"roomName":"BlueRoom","idOfRoom":"22","floor":1,"available":true,"standingPlaces":20,"seats":30,"hangingPlaces":0,
+"roomEquipment":{
+"id":1,"projectorName":"Alfa","internalNumber":56,"externalNumber":"+12 123456789","connectionType":"Bluetooth","therePhone":true}
+}]}
+ ```
+###  3.1.1 GET with specified id
+
+```
+curl {your address}
+```
+example:
+```
+curl http://localhost:8080/organizations/1
+```
+response:
+```
+{"id":1,"organizationName":"IBM","rooms[
+{"id":1,"roomName":"BlueRoom","idOfRoom":"22","floor":1,"available":true,"standingPlaces":20,"seats":30,"hangingPlaces":0,
+"roomEquipment":{
+"id":1,"projectorName":"Alfa","internalNumber":56,"externalNumber":"+12 123456789","connectionType":"Bluetooth","therePhone":true}
+}]}
+```
+### 3.2. GET
+
+```
+curl {your address}
+```
+example:
+```
+curl http://localhost:8080/organizations
+```
 
 response:
 ```
-[
-  {"id":1,"organizationName":"IBM"},
-  {"id":2,"organizationName":"Google"},
-  {"id":3,"organizationName":"Red Hat"},
-  {"id":4,"organizationName":"Oracle"},
-  {"id":5,"organizationName":"Apple"}
-]
+{"id":1,"organizationName":"IBM","rooms[
+{"id":1,"roomName":"BlueRoom","idOfRoom":"22","floor":1,"available":true,"standingPlaces":20,"seats":30,"hangingPlaces":0,
+"roomEquipment":{
+"id":1,"projectorName":"Alfa","internalNumber":56,"externalNumber":"+12 123456789","connectionType":"Bluetooth","therePhone":true}
+}]}
 ```
 ### 3.3. PUT
 
@@ -128,20 +126,19 @@ curl -d "{json}" -H "Content-Type: application/json" -X PUT {your address}
 ```
 example:
 ```
-curl -d "{\"organizationName\":\"Intive\"}" -H "Content-Type: application/json"
--X PUT http://localhost:8080/Organizations/2
+curl -d "{\"organizationName\": \"Intive\",\"rooms\":[{\"roomName\": \"WideRoom\", \"idOfRoom\": \"1234\",\"floor\": 4,\"available\": true,\"standingPlaces\": 25,\"seats\": 40,\"hangingPlaces\": 6,\"roomEquipment\": {\"projectorName\": \"Beta\",\"internalNumber\": 87,\"externalNumber\": \"+14 987654321\",\"connectionType\": \"USB\",\"therePhone\": true}"}"]}" -H "Content-Type: application/json"
+-X PUT http://localhost:8080/organizations/1
+
 ```
 
-*GET request*
 
 response:
 ```
-[
-  {"id":1,"organizationName":"IBM"},
-  {"id":2,"organizationName":"Intive"},
-  {"id":3,"organizationName":"Red Hat"},
-  {"id":4,"organizationName":"Oracle"},
-]
+{"id":1,"organizationName":"Intive","rooms[
+{"id":2,"roomName":"WideRoom","idOfRoom":"1234","floor":4,"available":true,"standingPlaces":25,"seats":40,"hangingPlaces":6,
+"roomEquipment":{
+"id":2,"projectorName":"Beta","internalNumber":87,"externalNumber":"+14 987654321","connectionType":"USB","therePhone":true}
+}]}
 ```
 
 ### 3.4. DELETE
@@ -151,18 +148,14 @@ curl -X DELETE {your address}
 ```
 example:
 ```
-curl -X DELETE http://localhost:8080/Organizations/3
+curl -X DELETE http://localhost:8080/organizations/1
 ```
 
 *GET request*
 
 response:
 ```
-[
-  {"id":1,"organizationName":"IBM"},
-  {"id":2,"organizationName":"Intive"},
-  {"id":4,"organizationName":"Oracle"},
-]
+[]
 ```
 
 ## Built With
