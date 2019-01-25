@@ -1,6 +1,7 @@
 package com.hubertkulas.backendpatronage.service;
 
 import com.hubertkulas.backendpatronage.dto.RoomReservationDto;
+import com.hubertkulas.backendpatronage.exception.BadArgumentException;
 import com.hubertkulas.backendpatronage.exception.RoomIsAlreadyReservedException;
 import com.hubertkulas.backendpatronage.model.RoomReservation;
 import com.hubertkulas.backendpatronage.repository.RoomReservationRepository;
@@ -96,7 +97,7 @@ public class RoomReservationService implements com.hubertkulas.backendpatronage.
         var seconds = Duration.between(begin, end).getSeconds();
 
         if(seconds <=0){
-            throw new IllegalArgumentException("The end date you entered is before the start date");
+            throw new BadArgumentException("The end date you entered is before the start date");
         }
     }
     private void isReserved(RoomReservation roomReservation) {
@@ -109,10 +110,10 @@ public class RoomReservationService implements com.hubertkulas.backendpatronage.
     private void reservationIsToShortOrToLong(LocalDateTime begin, LocalDateTime end){
         var seconds = Duration.between(begin, end).getSeconds();
         if(seconds >=7200){
-            throw new IllegalArgumentException("Your reservation is too long. It should be less than two hours");
+            throw new BadArgumentException("Your reservation is too long. It should be less than two hours");
         }
         else if(seconds <= 300){
-            throw new IllegalArgumentException("Your reservation is too short. It should be more than five minutes");
+            throw new BadArgumentException("Your reservation is too short. It should be more than five minutes");
         }
     }
 

@@ -1,6 +1,7 @@
 package com.hubertkulas.backendpatronage.service;
 
 import com.hubertkulas.backendpatronage.dto.RoomDto;
+import com.hubertkulas.backendpatronage.exception.BadArgumentException;
 import com.hubertkulas.backendpatronage.model.Room;
 import com.hubertkulas.backendpatronage.repository.RoomRepository;
 import org.springframework.beans.BeanUtils;
@@ -75,10 +76,10 @@ public class RoomService implements com.hubertkulas.backendpatronage.service.Ser
         var roomNames = roomRepository.findByRoomName(room.getRoomName());
         var roomIds = roomRepository.findByIdOfRoom(room.getIdOfRoom());
         if(roomNames.size()!=0){
-            throw new IllegalArgumentException("'organization name' field is not unique");
+            throw new BadArgumentException("'organization name' field is not unique");
         }
         if(roomIds.size()!=0){
-            throw new IllegalArgumentException("'id of room' field is not unique");
+            throw new BadArgumentException("'id of room' field is not unique");
         }
 
     }

@@ -1,6 +1,7 @@
 package com.hubertkulas.backendpatronage.service;
 
 import com.hubertkulas.backendpatronage.dto.OrganizationDto;
+import com.hubertkulas.backendpatronage.exception.BadArgumentException;
 import com.hubertkulas.backendpatronage.model.Organization;
 import com.hubertkulas.backendpatronage.repository.OrganizationRepository;
 import org.springframework.beans.BeanUtils;
@@ -68,7 +69,7 @@ public class OrganizationService implements com.hubertkulas.backendpatronage.ser
     private void validateOrganizationName(Organization organization) {
         var organizations = organizationRepository.findByOrganizationName(organization.getOrganizationName());
         if(organizations.size()!=0){
-            throw new IllegalArgumentException("'organization name' field is not unique");
+            throw new BadArgumentException("'organization name' field is not unique");
         }
     }
 
