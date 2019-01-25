@@ -74,14 +74,19 @@ curl -d "{json}" -H "Content-Type: {type of your format}" {your address}
 ```
 example:
 ```
-curl -d "{\"organizationName\": \"IBM\",\"rooms\":[{\"roomName\": \"BlueRoom\", \"idOfRoom\": \"22\",\"floor\": 1,\"available\": true,\"standingPlaces\": 20,\"seats\": 30,\"hangingPlaces\": 0,\"roomEquipment\": {\"projectorName\": \"Alfa\",\"internalNumber\": 56,\"externalNumber\": \"+12 123456789\",\"connectionType\": \"Bluetooth\",\"therePhone\": true}"}"]}" -H "Content-Type: application/json" http://localhost:8080/organizations
+curl -d "{\"organizationName\": \"IBM\",\"rooms\":[{\"roomName\": \"BlueRoom\", 
+\"idOfRoom\": \"22\",\"floor\": 1,\"available\": true,\"standingPlaces\": 20,
+\"seats\": 30,\"hangingPlaces\": 0,\"roomEquipment\": {\"projectorName\": \"Alfa\",
+\"internalNumber\": 56,\"externalNumber\": \"+12 123456789\",\"connectionType\": \"Bluetooth\",
+\"therePhone\": true}"}"]}" -H "Content-Type: application/json" http://localhost:8080/organizations
 ```
 response:
 ```
 {"id":1,"organizationName":"IBM","rooms[
-{"id":1,"roomName":"BlueRoom","idOfRoom":"22","floor":1,"available":true,"standingPlaces":20,"seats":30,"hangingPlaces":0,
-"roomEquipment":{
-"id":1,"projectorName":"Alfa","internalNumber":56,"externalNumber":"+12 123456789","connectionType":"Bluetooth","therePhone":true}
+{"id":1,"roomName":"BlueRoom","idOfRoom":"22","floor":1,"available":true,
+"standingPlaces":20,"seats":30,"hangingPlaces":0,"roomEquipment":{
+"id":1,"projectorName":"Alfa","internalNumber":56,"externalNumber":"+12 123456789",
+"connectionType":"Bluetooth","therePhone":true}
 }]}
  ```
 ###  3.1.1 GET with specified id
@@ -96,9 +101,10 @@ curl http://localhost:8080/organizations/1
 response:
 ```
 {"id":1,"organizationName":"IBM","rooms[
-{"id":1,"roomName":"BlueRoom","idOfRoom":"22","floor":1,"available":true,"standingPlaces":20,"seats":30,"hangingPlaces":0,
-"roomEquipment":{
-"id":1,"projectorName":"Alfa","internalNumber":56,"externalNumber":"+12 123456789","connectionType":"Bluetooth","therePhone":true}
+{"id":1,"roomName":"BlueRoom","idOfRoom":"22","floor":1,"available":true,
+"standingPlaces":20,"seats":30,"hangingPlaces":0,"roomEquipment":{
+"id":1,"projectorName":"Alfa","internalNumber":56,"externalNumber":"+12 123456789",
+"connectionType":"Bluetooth","therePhone":true}
 }]}
 ```
 ### 3.2. GET
@@ -114,9 +120,10 @@ curl http://localhost:8080/organizations
 response:
 ```
 {"id":1,"organizationName":"IBM","rooms[
-{"id":1,"roomName":"BlueRoom","idOfRoom":"22","floor":1,"available":true,"standingPlaces":20,"seats":30,"hangingPlaces":0,
-"roomEquipment":{
-"id":1,"projectorName":"Alfa","internalNumber":56,"externalNumber":"+12 123456789","connectionType":"Bluetooth","therePhone":true}
+{"id":1,"roomName":"BlueRoom","idOfRoom":"22","floor":1,"available":true,
+"standingPlaces":20,"seats":30,"hangingPlaces":0,"roomEquipment":{
+"id":1,"projectorName":"Alfa","internalNumber":56,"externalNumber":"+12 123456789",
+"connectionType":"Bluetooth","therePhone":true}
 }]}
 ```
 ### 3.3. PUT
@@ -126,7 +133,11 @@ curl -d "{json}" -H "Content-Type: application/json" -X PUT {your address}
 ```
 example:
 ```
-curl -d "{\"organizationName\": \"Intive\",\"rooms\":[{\"roomName\": \"WideRoom\", \"idOfRoom\": \"1234\",\"floor\": 4,\"available\": true,\"standingPlaces\": 25,\"seats\": 40,\"hangingPlaces\": 6,\"roomEquipment\": {\"projectorName\": \"Beta\",\"internalNumber\": 87,\"externalNumber\": \"+14 987654321\",\"connectionType\": \"USB\",\"therePhone\": true}"}"]}" -H "Content-Type: application/json"
+curl -d "{\"organizationName\": \"Intive\",\"rooms\":[{\"roomName\": \"WideRoom\",
+\"idOfRoom\": \"1234\",\"floor\": 4,\"available\": true,\"standingPlaces\": 25,
+\"seats\": 40,\"hangingPlaces\": 6,\"roomEquipment\": {\"projectorName\": \"Beta\",
+\"internalNumber\": 87,\"externalNumber\": \"+14 987654321\",\"connectionType\": \"USB\",
+\"therePhone\": true}"}"]}" -H "Content-Type: application/json"
 -X PUT http://localhost:8080/organizations/1
 
 ```
@@ -135,9 +146,10 @@ curl -d "{\"organizationName\": \"Intive\",\"rooms\":[{\"roomName\": \"WideRoom\
 response:
 ```
 {"id":1,"organizationName":"Intive","rooms[
-{"id":2,"roomName":"WideRoom","idOfRoom":"1234","floor":4,"available":true,"standingPlaces":25,"seats":40,"hangingPlaces":6,
-"roomEquipment":{
-"id":2,"projectorName":"Beta","internalNumber":87,"externalNumber":"+14 987654321","connectionType":"USB","therePhone":true}
+{"id":2,"roomName":"WideRoom","idOfRoom":"1234","floor":4,"available":true,
+"standingPlaces":25,"seats":40,"hangingPlaces":6,"roomEquipment":{
+"id":2,"projectorName":"Beta","internalNumber":87,"externalNumber":"+14 987654321",
+"connectionType":"USB","therePhone":true}
 }]}
 ```
 
