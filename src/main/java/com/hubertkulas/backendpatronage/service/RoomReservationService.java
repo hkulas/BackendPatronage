@@ -78,20 +78,20 @@ public class RoomReservationService implements com.hubertkulas.backendpatronage.
     private void validationMethods(RoomReservationDto roomReservationDto) {
         var roomReservation = convertToEntity(roomReservationDto);
 
-        validatePersonalId(roomReservation);
+//        validatePersonalId(roomReservation);
         reservationIsToShortOrToLong(roomReservation.getStartOfReservation(),roomReservation.getEndOfReservation());
         beginIsBeforeEnd(roomReservation.getStartOfReservation(),roomReservation.getEndOfReservation());
         isReserved(roomReservation);
     }
 
 
-    private void validatePersonalId(RoomReservation roomReservation) {
-        var roomReservations = roomReservationRepository.findByPersonalId(roomReservation.getPersonalId());
-        if(roomReservations.size()!=0){
-            throw new IllegalArgumentException("'personal id' field is not unique");
-        }
-
-    }
+//    private void validatePersonalId(RoomReservation roomReservation) {
+//        var roomReservations = roomReservationRepository.findByPersonalId(roomReservation.getPersonalId());
+//        if(roomReservations.size()!=0){
+//            throw new IllegalArgumentException("'personal id' field is not unique");
+//        }
+//
+//    }
     private void beginIsBeforeEnd(LocalDateTime begin, LocalDateTime end){
 
         var seconds = Duration.between(begin, end).getSeconds();

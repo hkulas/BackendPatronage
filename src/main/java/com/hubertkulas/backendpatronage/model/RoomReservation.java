@@ -2,8 +2,12 @@ package com.hubertkulas.backendpatronage.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.hubertkulas.backendpatronage.validator.UniquePersonalId;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
@@ -17,9 +21,10 @@ public class RoomReservation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(unique = true)
+//    @Column(unique = true)
     @Size(min = 2, max =20, message = "The size of 'personal id' should be between 2 and 20")
     @NotBlank(message = "'personal id' should not be blank")
+    @UniquePersonalId(message = "This personal id is already taken")
     private String personalId;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
