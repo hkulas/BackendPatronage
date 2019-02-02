@@ -50,7 +50,6 @@ public class RoomReservationService implements com.hubertkulas.backendpatronage.
     }
 
 
-
     @Override
     public RoomReservationDto update(Long id, RoomReservationDto roomReservationDto) {
         validationMethods(roomReservationDto);
@@ -75,44 +74,36 @@ public class RoomReservationService implements com.hubertkulas.backendpatronage.
         roomReservationRepository.deleteById(id);
 
     }
+
     private void validationMethods(RoomReservationDto roomReservationDto) {
         var roomReservation = convertToEntity(roomReservationDto);
-
-//        validatePersonalId(roomReservation);
-        reservationIsToShortOrToLong(roomReservation.getStartOfReservation(),roomReservation.getEndOfReservation());
-        beginIsBeforeEnd(roomReservation.getStartOfReservation(),roomReservation.getEndOfReservation());
+        reservationIsToShortOrToLong(roomReservation.getStartOfReservation(), roomReservation.getEndOfReservation());
+        beginIsBeforeEnd(roomReservation.getStartOfReservation(), roomReservation.getEndOfReservation());
         isReserved(roomReservation);
     }
 
 
-//    private void validatePersonalId(RoomReservation roomReservation) {
-//        var roomReservations = roomReservationRepository.findByPersonalId(roomReservation.getPersonalId());
-//        if(roomReservations.size()!=0){
-//            throw new IllegalArgumentException("'personal id' field is not unique");
-//        }
-//
-//    }
-    private void beginIsBeforeEnd(LocalDateTime begin, LocalDateTime end){
+    private void beginIsBeforeEnd(LocalDateTime begin, LocalDateTime end) {
 
         var seconds = Duration.between(begin, end).getSeconds();
 
-        if(seconds <=0){
+        if (seconds <= 0) {
             throw new BadArgumentException("The end date you entered is before the start date");
         }
     }
+
     private void isReserved(RoomReservation roomReservation) {
-        List<RoomReservation> roomReservations = roomReservationRepository.findAllByStartOfReservationLessThanEqualAndEndOfReservationGreaterThanEqual(roomReservation.getEndOfReservation(),roomReservation.getStartOfReservation());
-        if(roomReservations.size()!=0){
+        List<RoomReservation> roomReservations = roomReservationRepository.findAllByStartOfReservationLessThanEqualAndEndOfReservationGreaterThanEqual(roomReservation.getEndOfReservation(), roomReservation.getStartOfReservation());
+        if (roomReservations.size() != 0) {
             throw new RoomIsAlreadyReservedException();
         }
     }
 
-    private void reservationIsToShortOrToLong(LocalDateTime begin, LocalDateTime end){
+    private void reservationIsToShortOrToLong(LocalDateTime begin, LocalDateTime end) {
         var seconds = Duration.between(begin, end).getSeconds();
-        if(seconds >=7200){
+        if (seconds >= 7200) {
             throw new BadArgumentException("Your reservation is too long. It should be less than two hours");
-        }
-        else if(seconds <= 300){
+        } else if (seconds <= 300) {
             throw new BadArgumentException("Your reservation is too short. It should be more than five minutes");
         }
     }
@@ -130,7 +121,6 @@ public class RoomReservationService implements com.hubertkulas.backendpatronage.
         BeanUtils.copyProperties(roomReservationDto, roomReservation);
         return roomReservation;
     }
-
 
 
 }

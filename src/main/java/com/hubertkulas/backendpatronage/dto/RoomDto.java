@@ -1,6 +1,8 @@
 package com.hubertkulas.backendpatronage.dto;
 
 import com.hubertkulas.backendpatronage.model.RoomEquipment;
+import com.hubertkulas.backendpatronage.validator.UniqueIdOfRoom;
+import com.hubertkulas.backendpatronage.validator.UniqueRoomName;
 import org.hibernate.validator.constraints.Range;
 
 import javax.validation.constraints.NotBlank;
@@ -12,9 +14,12 @@ public class RoomDto {
 
     @Size(min = 2, max = 20, message = "The size of 'room name' should be between 2 and 20")
     @NotBlank(message = "'room name' should not be blank")
+    @UniqueRoomName(message = "This room name is already taken")
     private String roomName;
+
     @Size(min = 2, max = 20, message = "The size of 'id of room' should be between 2 and 20")
     @NotBlank(message = "'id of room' should not be blank")
+    @UniqueIdOfRoom(message = "This id of room is already taken")
     private String idOfRoom;
 
     @Range(min = 0, max = 10, message = "Minimal value of floor should be 0 and maximum value should be 10")

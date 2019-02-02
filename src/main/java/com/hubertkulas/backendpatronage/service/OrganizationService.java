@@ -1,7 +1,6 @@
 package com.hubertkulas.backendpatronage.service;
 
 import com.hubertkulas.backendpatronage.dto.OrganizationDto;
-import com.hubertkulas.backendpatronage.exception.BadArgumentException;
 import com.hubertkulas.backendpatronage.model.Organization;
 import com.hubertkulas.backendpatronage.repository.OrganizationRepository;
 import org.springframework.beans.BeanUtils;
@@ -37,7 +36,6 @@ public class OrganizationService implements com.hubertkulas.backendpatronage.ser
     @Override
     public OrganizationDto add(OrganizationDto organizationDto) {
         Organization organization = convertToEntity(organizationDto);
-        validateOrganizationName(organization);
         organization = organizationRepository.save(organization);
         return convertToDto(organization);
     }
@@ -45,7 +43,6 @@ public class OrganizationService implements com.hubertkulas.backendpatronage.ser
     @Override
     public OrganizationDto update(Long id, OrganizationDto organizationDto) {
         Organization organization = convertToEntity(organizationDto);
-        validateOrganizationName(organization);
 
         return organizationRepository.findById(id).map(newOrganization -> {
             newOrganization.setOrganizationName(organization.getOrganizationName());
@@ -66,12 +63,6 @@ public class OrganizationService implements com.hubertkulas.backendpatronage.ser
         organizationRepository.deleteById(id);
     }
 
-    private void validateOrganizationName(Organization organization) {
-        var organizations = organizationRepository.findByOrganizationName(organization.getOrganizationName());
-        if(organizations.size()!=0){
-            throw new BadArgumentException("'organization name' field is not unique");
-        }
-    }
 
     private OrganizationDto convertToDto(Organization organization) {
 

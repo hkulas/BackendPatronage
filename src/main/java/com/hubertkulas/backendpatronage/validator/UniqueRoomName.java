@@ -10,8 +10,8 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 @Target({FIELD})
 @Retention(RUNTIME)
-@Constraint(validatedBy = {PersonalIdValidator.class})
-public @interface UniquePersonalId {
+@Constraint(validatedBy = {RoomNameValidator.class})
+public @interface UniqueRoomName {
     String message();
 
     Class<?>[] groups() default {};

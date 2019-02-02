@@ -1,7 +1,6 @@
 package com.hubertkulas.backendpatronage.service;
 
 import com.hubertkulas.backendpatronage.dto.RoomDto;
-import com.hubertkulas.backendpatronage.exception.BadArgumentException;
 import com.hubertkulas.backendpatronage.model.Room;
 import com.hubertkulas.backendpatronage.repository.RoomRepository;
 import org.springframework.beans.BeanUtils;
@@ -38,7 +37,6 @@ public class RoomService implements com.hubertkulas.backendpatronage.service.Ser
     @Override
     public RoomDto add(RoomDto roomDto) {
         Room room = convertToEntity(roomDto);
-        validateRoomNameIdOfRoom(room);
         room = roomRepository.save(room);
         return convertToDto(room);
     }
@@ -46,7 +44,6 @@ public class RoomService implements com.hubertkulas.backendpatronage.service.Ser
     @Override
     public RoomDto update(Long id, RoomDto roomDto) {
         Room room = convertToEntity(roomDto);
-        validateRoomNameIdOfRoom(room);
         return roomRepository.findById(id).map(newRoom -> {
             newRoom.setRoomName(room.getRoomName());
             newRoom.setIdOfRoom(room.getIdOfRoom());
@@ -71,19 +68,6 @@ public class RoomService implements com.hubertkulas.backendpatronage.service.Ser
 
         roomRepository.deleteById(id);
     }
-
-    private void validateRoomNameIdOfRoom(Room room) {
-        var roomNames = roomRepository.findByRoomName(room.getRoomName());
-        var roomIds = roomRepository.findByIdOfRoom(room.getIdOfRoom());
-        if(roomNames.size()!=0){
-            throw new BadArgumentException("'organization name' field is not unique");
-        }
-        if(roomIds.size()!=0){
-            throw new BadArgumentException("'id of room' field is not unique");
-        }
-
-    }
-
 
     private RoomDto convertToDto(Room room) {
         var roomDto = new RoomDto();

@@ -1,6 +1,7 @@
 package com.hubertkulas.backendpatronage.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.hubertkulas.backendpatronage.validator.UniqueOrganizationName;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -16,10 +17,9 @@ public class Organization {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-
-    @Column(unique = true)
     @Size(min = 2, max = 20, message = "The size of 'organization name' should be between 2 and 20")
     @NotBlank(message = "'organization name' should not be blank")
+    @UniqueOrganizationName(message = "This organization name is already taken")
     private String organizationName;
 
     @OneToMany(cascade = CascadeType.ALL)
