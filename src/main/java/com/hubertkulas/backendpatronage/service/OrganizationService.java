@@ -21,10 +21,10 @@ public class OrganizationService implements com.hubertkulas.backendpatronage.ser
         var organizations = organizationRepository.findAll();
         var organizationDtos = new ArrayList<OrganizationDto>();
 
-        for (Organization organization : organizations) {
+        organizations.forEach(organization -> {
             OrganizationDto organizationDto = convertToDto(organization);
             organizationDtos.add(organizationDto);
-        }
+        });
         return organizationDtos;
     }
 

@@ -24,14 +24,14 @@ public class RoomReservationService implements com.hubertkulas.backendpatronage.
     @Override
     public List<RoomReservationDto> getAll() {
 
-        var conferenceRoomReservations = roomReservationRepository.findAll();
-        var conferenceRoomReservationDtos = new ArrayList<RoomReservationDto>();
+        var roomReservations = roomReservationRepository.findAll();
+        var roomReservationDtos = new ArrayList<RoomReservationDto>();
 
-        for (RoomReservation roomReservation : conferenceRoomReservations) {
+        roomReservations.forEach(roomReservation -> {
             RoomReservationDto roomReservationDto = convertToDto(roomReservation);
-            conferenceRoomReservationDtos.add(roomReservationDto);
-        }
-        return conferenceRoomReservationDtos;
+            roomReservationDtos.add(roomReservationDto);
+        });
+        return roomReservationDtos;
 
     }
 

@@ -18,14 +18,14 @@ public class RoomService implements com.hubertkulas.backendpatronage.service.Ser
 
     @Override
     public List<RoomDto> getAll() {
-        var conferenceRooms = roomRepository.findAll();
-        var conferenceRoomDtos = new ArrayList<RoomDto>();
+        var rooms = roomRepository.findAll();
+        var roomDtos = new ArrayList<RoomDto>();
 
-        for (Room room : conferenceRooms) {
+        rooms.forEach(room->{
             RoomDto roomDto = convertToDto(room);
-            conferenceRoomDtos.add(roomDto);
-        }
-        return conferenceRoomDtos;
+            roomDtos.add(roomDto);
+        });
+        return roomDtos;
     }
 
     @Override
