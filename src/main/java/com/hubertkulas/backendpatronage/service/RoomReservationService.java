@@ -93,7 +93,7 @@ public class RoomReservationService implements com.hubertkulas.backendpatronage.
     }
 
     private void isReserved(RoomReservation roomReservation) {
-        List<RoomReservation> roomReservations = roomReservationRepository.findAllByStartOfReservationLessThanEqualAndEndOfReservationGreaterThanEqual(roomReservation.getEndOfReservation(), roomReservation.getStartOfReservation());
+        var roomReservations = roomReservationRepository.findAllByStartOfReservationLessThanEqualAndEndOfReservationGreaterThanEqual(roomReservation.getEndOfReservation(), roomReservation.getStartOfReservation());
         if (roomReservations.size() != 0) {
             throw new RoomIsAlreadyReservedException();
         }
