@@ -18,7 +18,7 @@ public class OrganizationTest {
     private OrganizationRepository organizationRepository;
 
     @Test
-    public void returnRoomSample_whenGetOneIsCalled() {
+    public void returnOrganizationSample_whenGetOneIsCalled() {
         var organizationSample = organizationRepository.save(createSampleOrganization());
         var reservationRoomResult = organizationRepository.getOne(1l);
         assertThat(reservationRoomResult)

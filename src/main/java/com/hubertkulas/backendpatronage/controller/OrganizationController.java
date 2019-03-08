@@ -10,7 +10,7 @@ import java.util.List;
 @RequestMapping("/organizations")
 public class OrganizationController {
 
-
+// test message
     private final Service<OrganizationDto> organizationService;
 
     public OrganizationController(Service<OrganizationDto> organizationService) {
